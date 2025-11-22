@@ -10,6 +10,9 @@ const config = {
     // Security settings
     SESSION_SECRET: process.env.SESSION_SECRET || 'fallback_secret_must_be_changed',
     CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
+
+    // Database settings
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/tesla-clone',
 };
 
 module.exports = config;
