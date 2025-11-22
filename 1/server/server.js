@@ -1,18 +1,18 @@
 require('dotenv').config();
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const session = require('express-session');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+const db = require('./database'); // Initialize SQLite
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // ==========================================
 // 1. MIDDLEWARE
@@ -23,7 +23,7 @@ app.use(helmet());
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:3000', // React Dev Server
+  origin: true, // Allow any origin for debugging
   credentials: true, // Allow cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -51,16 +51,7 @@ app.use(session({
 }));
 
 // ==========================================
-// 2. DATABASE CONNECTION
-// ==========================================
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/tesla_clone';
-
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('✅ MongoDB Connected Successfully'))
-  .catch(err => console.error('❌ MongoDB Connection Error:', err));
-
-// ==========================================
-// 3. ROUTES
+// 2. ROUTES
 // ==========================================
 
 // Health Check Endpoint
@@ -68,6 +59,7 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
     env: process.env.NODE_ENV || 'development',
+    db: 'SQLite',
     timestamp: new Date().toISOString()
   });
 });
@@ -91,9 +83,19 @@ app.use((err, req, res, next) => {
 });
 
 // ==========================================
-// 4. SERVER START
+// 3. SERVER START
 // ==========================================
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+const server = app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
   console.log(`👉 Health check: http://localhost:${PORT}/health`);
+  console.log(`💾 Database: JSON File (tesla_data.json)`);
+});
+
+server.on('error', (e) => {
+  if (e.code === 'EADDRINUSE') {
+    console.error('❌ Port 5000 is already in use! Please kill the process using port 5000.');
+    process.exit(1);
+  } else {
+    console.error('❌ Server Error:', e);
+  }
 });

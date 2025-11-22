@@ -1,10 +1,10 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { Car, Menu, X, User, ShoppingCart, Check, Loader2, Zap, Settings, Gauge, MapPin, DollarSign, Filter, Battery, Globe, Heart, Package, TrendingUp, Award, Leaf, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Car, Menu, X, User, ShoppingCart, Check, Loader2, Zap, Settings, Gauge, MapPin, DollarSign, Filter, Battery, Globe, Heart, Package, TrendingUp, Award, Leaf, ChevronLeft, ChevronRight, CreditCard, Lock } from 'lucide-react';
 
 // ==========================================
 // 0. API SERVICE (Real Backend Only - No Mock Fallback)
 // ==========================================
-const API_BASE = '/api';
+const API_BASE = 'http://localhost:5001/api';
 
 // Session storage keys
 const SESSION_STORAGE_KEY = 'tesla_user_session';
@@ -432,7 +432,9 @@ const VEHICLES = {
     video: 'https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Cybertruck-Homepage-Desktop.mp4',
     image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Homepage-Cybertruck-Desktop',
     images: {
-      steel: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
+      steel: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
+      black: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
+      white: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
     },
     wheels: {
       '20': { steel: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
@@ -491,10 +493,10 @@ const VEHICLE_HD_IMAGES = {
 };
 
 const SHOP_CATEGORIES = {
-  charging: { name: 'Charging', image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/wall-connector.jpg' },
-  accessories: { name: 'Vehicle Accessories', image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Accessories_Aero_Main_Desktop.jpg' },
-  apparel: { name: 'Apparel', image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Tshirt.jpg' },
-  lifestyle: { name: 'Lifestyle', image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Wireless_Charger.jpg' }
+  charging: { name: 'Charging', image: '/assets/shop_charging.jpg' },
+  accessories: { name: 'Vehicle Accessories', image: '/assets/shop_accessories.jpg' },
+  apparel: { name: 'Apparel', image: '/assets/shop_apparel.jpg' },
+  lifestyle: { name: 'Lifestyle', image: '/assets/shop_lifestyle.jpg' }
 };
 
 const STATIC_INTERIORS = {
@@ -798,15 +800,8 @@ const Configurator = ({ vehicleId, onBack, onNavigate }) => {
       totalPrice
     };
 
-    const result = await orderAPI.createOrder(orderData);
-
-    if (result.success) {
-      sessionStorage.removeItem('pendingOrder');
-      alert(`✅ Order placed successfully!\n\nVehicle: ${vehicle.name}\nTotal: $${totalPrice.toLocaleString()}\n\nYour order has been saved! View it in your Account page.`);
-      onNavigate('account');
-    } else {
-      alert('❌ Failed to place order: ' + (result.error || 'Unknown error. Please make sure backend is running.'));
-    }
+    sessionStorage.setItem('pendingOrder', JSON.stringify(orderData));
+    onNavigate('payment');
   };
 
   return (
@@ -1803,6 +1798,106 @@ const ShopPage = () => {
   );
 };
 
+// Payment Page Component
+const PaymentPage = ({ onNavigate }) => {
+  const [loading, setLoading] = useState(false);
+  const [orderData, setOrderData] = useState(null);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const data = sessionStorage.getItem('pendingOrder');
+    if (data) setOrderData(JSON.parse(data));
+    else onNavigate('home');
+  }, []);
+
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // Simulate payment processing
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    const result = await orderAPI.createOrder({
+      ...orderData,
+      paymentDetails: { last4: '4242', brand: 'Visa' }
+    });
+
+    if (result.success) {
+      sessionStorage.removeItem('pendingOrder');
+      alert('✅ Payment Successful! Order Placed.');
+      onNavigate('account');
+    } else {
+      alert('❌ Payment Failed: ' + (result.message || 'Unknown error'));
+    }
+    setLoading(false);
+  };
+
+  if (!orderData) return null;
+
+  return (
+    <div className="min-h-screen pt-24 px-6 bg-gray-50 flex justify-center items-center">
+      <div className="max-w-4xl w-full grid md:grid-cols-2 gap-8">
+        {/* Order Summary */}
+        <div className="bg-white p-8 rounded-2xl shadow-lg h-fit">
+          <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
+          <div className="space-y-4">
+            <div className="flex justify-between text-lg font-semibold">
+              <span>{orderData.vehicleName}</span>
+              <span>${orderData.totalPrice.toLocaleString()}</span>
+            </div>
+            <div className="text-sm text-gray-600 space-y-1">
+              <p>Battery: {orderData.config.battery}</p>
+              <p>Paint: {orderData.config.paint}</p>
+              <p>Wheels: {orderData.config.wheels}</p>
+              <p>Interior: {orderData.config.interior}</p>
+            </div>
+            <div className="border-t pt-4 mt-4">
+              <div className="flex justify-between font-bold text-xl">
+                <span>Total Due</span>
+                <span>${orderData.totalPrice.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Payment Form */}
+        <div className="bg-white p-8 rounded-2xl shadow-lg">
+          <h2 className="text-2xl font-bold mb-6">Payment Details</h2>
+          <form onSubmit={handlePayment} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Cardholder Name</label>
+              <input type="text" required className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="John Doe" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Card Number</label>
+              <div className="relative">
+                <input type="text" required maxLength="19" className="w-full p-3 pl-10 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="0000 0000 0000 0000" />
+                <CreditCard className="absolute left-3 top-3.5 text-gray-400 w-5 h-5" />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Expiry</label>
+                <input type="text" required placeholder="MM/YY" className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">CVC</label>
+                <input type="text" required maxLength="3" className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 outline-none" placeholder="123" />
+              </div>
+            </div>
+            <button
+              disabled={loading}
+              className="w-full bg-black text-white py-4 rounded-lg font-bold hover:bg-gray-800 transition-all disabled:opacity-50 flex justify-center items-center gap-2"
+            >
+              {loading ? <Loader2 className="animate-spin" /> : <><Lock className="w-4 h-4" /> Pay ${orderData.totalPrice.toLocaleString()}</>}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Main App Component
 const TeslaApp = () => {
   const [page, setPage] = useState('home');
@@ -1832,6 +1927,7 @@ const TeslaApp = () => {
         {page === 'charging' && <ChargingPage />}
         {page === 'discover' && <DiscoverPage />}
         {page === 'shop' && <ShopPage />}
+        {page === 'payment' && <PaymentPage onNavigate={setPage} />}
         {page === 'configurator' && selectedVehicle && (
           <Configurator vehicleId={selectedVehicle} onBack={() => setPage('home')} onNavigate={setPage} />
         )}

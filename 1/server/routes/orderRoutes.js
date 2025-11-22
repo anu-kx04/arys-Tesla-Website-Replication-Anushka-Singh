@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Order = require('../models/Order');
+const db = require('../database');
 
 // Middleware to check if user is authenticated
 const requireAuth = (req, res, next) => {
@@ -14,54 +14,48 @@ const requireAuth = (req, res, next) => {
 };
 
 // GET /api/orders - Get all orders for the authenticated user
-router.get('/', requireAuth, async (req, res) => {
+router.get('/', requireAuth, (req, res) => {
     try {
-        const userId = req.session.user._id || req.session.user.id;
-
-        const orders = await Order.find({ userId })
-            .sort({ createdAt: -1 })  // Most recent first
-            .lean();
+        const userId = req.session.user.id;
+        const orders = db.findOrdersByUserId(userId);
 
         res.json({
             success: true,
             orders
         });
     } catch (error) {
-        console.error('Error fetching orders:', error);
+        console.error('Fetch Orders Error:', error);
         res.status(500).json({
             success: false,
-            message: 'Failed to fetch orders',
-            error: error.message
+            message: 'Failed to fetch orders'
         });
     }
 });
 
 // POST /api/orders - Create a new order
-router.post('/', requireAuth, async (req, res) => {
+router.post('/', requireAuth, (req, res) => {
     try {
-        const userId = req.session.user._id || req.session.user.id;
-        const { vehicleId, vehicleName, config, selectedOptions, totalPrice } = req.body;
+        const userId = req.session.user.id;
+        const { vehicleId, vehicleName, config, selectedOptions, totalPrice, paymentDetails } = req.body;
 
         // Validate required fields
         if (!vehicleId || !vehicleName || !totalPrice) {
             return res.status(400).json({
                 success: false,
-                message: 'Missing required fields: vehicleId, vehicleName, or totalPrice'
+                message: 'Missing required fields'
             });
         }
 
-        // Create new order
-        const newOrder = new Order({
+        // Create Order
+        const newOrder = db.createOrder({
             userId,
             vehicleId,
             vehicleName,
             config,
             selectedOptions,
             totalPrice,
-            status: 'Paid'
+            paymentDetails
         });
-
-        await newOrder.save();
 
         res.status(201).json({
             success: true,
@@ -69,11 +63,10 @@ router.post('/', requireAuth, async (req, res) => {
             order: newOrder
         });
     } catch (error) {
-        console.error('Error creating order:', error);
+        console.error('Create Order Error:', error);
         res.status(500).json({
             success: false,
-            message: 'Failed to create order',
-            error: error.message
+            message: 'Failed to create order'
         });
     }
 });
