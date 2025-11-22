@@ -1,0 +1,13 @@
+{
+  "users": [
+    {
+      "name": "Anushka Singh",
+      "email": "ssanushka23@gmail.com",
+      "passwordHash": "$2a$10$L.LrL2FJ0wmzP9c6js1QjORySiJIKnMfDK7bYQhardRTfprMmSpea",
+      "region": "US",
+      "id": 1763827841503,
+      "createdAt": "2025-11-22T16:10:41.503Z"
+    }
+  ],
+  "orders": []
+}
