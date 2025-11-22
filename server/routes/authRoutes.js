@@ -1,0 +1,234 @@
+const express = require('express');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const db = require('../database'); // JSON database (WORKING VERSION)
+
+/**
+ * SIGNUP
+ * POST /api/auth/signup
+ */
+router.post('/signup', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Validation
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'All fields are required'
+      });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'Password must be at least 6 characters'
+      });
+    }
+
+    // Check if user exists
+    const existingUser = db.findUserByEmail(email);
+    if (existingUser) {
+      return res.status(409).json({
+        success: false,
+        message: 'Email already registered'
+      });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create user
+    const newUser = db.createUser({
+      name,
+      email,
+      password: hashedPassword
+    });
+
+    // Store session
+    req.session.userId = newUser.id;
+    req.session.userEmail = newUser.email;
+
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = newUser;
+
+    res.status(201).json({
+      success: true,
+      message: 'Account created successfully',
+      user: userWithoutPassword
+    });
+  } catch (error) {
+    console.error('Signup error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to create account'
+    });
+  }
+});
+
+/**
+ * LOGIN
+ * POST /api/auth/login
+ */
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validation
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Email and password are required'
+      });
+    }
+
+    // Find user
+    const user = db.findUserByEmail(email);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Account not found. Please sign up first.'
+      });
+    }
+
+    // Check password
+    // Support both 'password' (new) and 'passwordHash' (legacy/existing) fields
+    const storedPassword = user.password || user.passwordHash;
+
+    if (!storedPassword) {
+      console.error('User found but no password field:', user);
+      return res.status(500).json({
+        success: false,
+        message: 'Account error: Invalid password data'
+      });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, storedPassword);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        message: 'Incorrect password'
+      });
+    }
+
+    // Store session
+    req.session.userId = user.id;
+    req.session.userEmail = user.email;
+
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = user;
+
+    res.json({
+      success: true,
+      message: 'Login successful',
+      user: userWithoutPassword
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Login failed'
+    });
+  }
+});
+
+/**
+ * LOGOUT
+ * POST /api/auth/logout
+ */
+router.post('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to logout'
+      });
+    }
+
+    res.clearCookie('sessionId');
+    res.json({
+      success: true,
+      message: 'Logged out successfully'
+    });
+  });
+});
+
+/**
+ * CHECK AUTH STATUS
+ * GET /api/auth/check
+ */
+router.get('/check', (req, res) => {
+  try {
+    if (!req.session || !req.session.userId) {
+      return res.json({
+        success: true,
+        isAuthenticated: false
+      });
+    }
+
+    const user = db.findUserById(req.session.userId);
+
+    if (!user) {
+      req.session.destroy();
+      return res.json({
+        success: true,
+        isAuthenticated: false
+      });
+    }
+
+    // Remove password from response
+    const { password, ...userWithoutPassword } = user;
+
+    res.json({
+      success: true,
+      isAuthenticated: true,
+      user: userWithoutPassword
+    });
+  } catch (error) {
+    console.error('Auth check error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to check authentication'
+    });
+  }
+});
+
+/**
+ * GET PROFILE
+ * GET /api/auth/profile
+ */
+router.get('/profile', (req, res) => {
+  try {
+    if (!req.session || !req.session.userId) {
+      return res.status(401).json({
+        success: false,
+        message: 'Not authenticated'
+      });
+    }
+
+    const user = db.findUserById(req.session.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    // Remove password from response
+    const { password, ...userWithoutPassword } = user;
+
+    res.json({
+      success: true,
+      user: userWithoutPassword
+    });
+  } catch (error) {
+    console.error('Profile fetch error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch profile'
+    });
+  }
+});
+
+module.exports = router;
