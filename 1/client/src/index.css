@@ -1,0 +1,9 @@
+/* Tailwind Directives - MUST be at the top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add any custom or global CSS below here */
+body {
+  font-family: 'Inter', sans-serif;
+}
