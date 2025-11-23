@@ -25,7 +25,8 @@ app.use(helmet());
 const allowedOrigins = [
   'http://localhost:3000',
   'https://arys-tesla-website-replication-anushka.onrender.com',
-  'https://tesla-website-replication-anushka-singh.vercel.app' // Add Vercel if using
+  'https://tesla-website-replication-anushka-singh.vercel.app', // Previous Vercel URL
+  'https://arys-tesla-website-replication-anus-orpin.vercel.app' // Actual Vercel deployment
 ];
 
 app.use(cors({
