@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { Car, Menu, X, User, ShoppingCart, Check, Loader2, Zap, Settings, Gauge, MapPin, DollarSign, Filter, Battery, Globe, Heart, Package, TrendingUp, Award, Leaf, ChevronLeft, ChevronRight, CreditCard, Lock, Clock } from 'lucide-react';
+import { Car, Menu, X, User, ShoppingCart, Check, Loader2, Zap, Settings, Gauge, MapPin, DollarSign, Filter, Battery, Globe, Heart, Package, TrendingUp, Award, Leaf, ChevronLeft, ChevronRight, CreditCard, Lock, Clock, Sparkles, LogOut, Home, Wrench, Phone } from 'lucide-react';
 
 // ==========================================
 // 0. API SERVICE (Real Backend Only - No Mock Fallback)
@@ -561,6 +561,17 @@ const Navigation = ({ currentPage, onNavigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logout } = useAuth();
 
+  // ESC key to close menu - Accessibility feature
+  useEffect(() => {
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
+  }, [menuOpen]);
+
   return (
     <nav className="fixed w-full z-50 transition-all duration-300 bg-[#020617]/90 backdrop-blur-xl text-white border-b border-white/10 shadow-2xl">
       <div className="flex justify-between items-center px-6 lg:px-12 py-3">
@@ -624,127 +635,243 @@ const Navigation = ({ currentPage, onNavigate }) => {
 
       {menuOpen && (
         <div className="fixed inset-0 z-[9999] flex justify-end">
-          {/* Backdrop with fade in */}
+          {/* Dark Blurred Overlay - closes on click */}
           <div
-            className="absolute inset-0 bg-black/60 backdrop-blur-md animate-fade-in"
+            className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-purple-900/30 backdrop-blur-lg animate-fade-in"
             onClick={() => setMenuOpen(false)}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') setMenuOpen(false);
+            }}
+            tabIndex={0}
           />
 
-          {/* Menu Panel with slide in */}
-          <div className="relative w-full max-w-md h-full bg-white/95 backdrop-blur-2xl shadow-2xl animate-slide-in-right flex flex-col border-l border-white/20">
+          {/* Premium Tesla-Style Mobile Menu Panel */}
+          <div className="relative w-full max-w-md h-full bg-gradient-to-b from-[#0a0e27] via-[#0d1138] to-[#0a0e27] shadow-2xl animate-slide-in-right flex flex-col border-l-2 border-[#9d4edd]">
 
-            {/* Header */}
-            <div className="flex justify-between items-center p-6 border-b border-gray-100">
-              <h2 className="text-xl font-bold text-gray-900 tracking-tight">Menu</h2>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
-              >
-                <X className="w-6 h-6 text-gray-600" />
-              </button>
+            {/* Tesla-Style Premium Header */}
+            <div className="relative px-6 py-5 border-b border-purple-500/20 bg-gradient-to-r from-[#0a0e27] to-[#1a1f3a]">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
+                    <Menu className="w-5 h-5 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 tracking-tight">
+                    Navigation
+                  </h2>
+                </div>
+
+                {/* Rotating X Close Button */}
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="p-2.5 rounded-full bg-white/5 hover:bg-purple-600/20 border border-purple-500/20 hover:border-purple-400 transition-all duration-300 hover:rotate-90 group"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6 text-purple-200 group-hover:text-white transition-colors" />
+                </button>
+              </div>
+
+              {/* Decorative Neon Line */}
+              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-6 py-6">
-              <div className="flex flex-col gap-8">
+            {/* Scrollable Content with Custom Scrollbar */}
+            <div className="flex-1 overflow-y-auto px-6 py-6 custom-scrollbar" style={{ scrollbarWidth: 'thin', scrollbarColor: '#9d4edd #1a1f3a' }}>
+              <div className="flex flex-col gap-6">
 
-                {/* Vehicles Section */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Vehicles</p>
+                {/* VEHICLES SECTION */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 px-2">
+                    <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                    <p className="text-xs font-bold text-purple-300 uppercase tracking-widest">Vehicles</p>
+                  </div>
                   <div className="grid gap-2">
-                    {Object.values(VEHICLES).map(v => (
+                    {Object.values(VEHICLES).map((v, index) => (
                       <button
                         key={v.id}
                         onClick={() => { onNavigate('customize', v.id); setMenuOpen(false); }}
-                        className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                        className="group text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+                        style={{ transitionDelay: `${index * 30}ms` }}
                       >
-                        {v.name}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <Car className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                            <span>{v.name}</span>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </div>
                       </button>
                     ))}
                   </div>
                 </div>
 
-                {/* Services Section */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Services</p>
+                {/* Separator */}
+                <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+
+                {/* CHARGING SECTION */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 px-2">
+                    <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                    <p className="text-xs font-bold text-purple-300 uppercase tracking-widest">Charging</p>
+                  </div>
+                  <button
+                    onClick={() => { onNavigate('charging'); setMenuOpen(false); }}
+                    className="group w-full text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <Zap className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                        <span>Charging Network</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </button>
+                </div>
+
+                {/* Separator */}
+                <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>
+
+                {/* DISCOVER SECTION */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 px-2">
+                    <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                    <p className="text-xs font-bold text-purple-300 uppercase tracking-widest">Discover</p>
+                  </div>
                   <div className="grid gap-2">
                     <button
                       onClick={() => { onNavigate('advisor'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
+                      className="group text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
                     >
-                      <span className="text-xl">✨</span> Smart Choice Advisor
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Sparkles className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>Smart Choice Advisor</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                     </button>
                     <button
                       onClick={() => { onNavigate('servicing'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                      className="group text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
                     >
-                      Servicing & Maintenance
-                    </button>
-                    <button
-                      onClick={() => { onNavigate('charging'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
-                    >
-                      Charging Network
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Wrench className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>Servicing & Maintenance</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                     </button>
                     <button
                       onClick={() => { onNavigate('customer-care'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                      className="group text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
                     >
-                      Customer Care
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Heart className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>Customer Care</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                     </button>
-                  </div>
-                </div>
-
-                {/* Account Section */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Account</p>
-                  <div className="grid gap-2">
-                    {user ? (
-                      <>
-                        <button
-                          onClick={() => { onNavigate('account'); setMenuOpen(false); }}
-                          className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
-                        >
-                          <User className="w-5 h-5 text-gray-500" />
-                          My Account
-                        </button>
-                        <button
-                          onClick={() => {
-                            logout();
-                            setMenuOpen(false);
-                            onNavigate('home');
-                          }}
-                          className="text-left py-3 px-4 hover:bg-red-50 rounded-xl font-medium text-red-600 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
-                        >
-                          <span className="text-xl">🚪</span> Logout
-                        </button>
-                      </>
-                    ) : (
-                      <button
-                        onClick={() => { onNavigate('login'); setMenuOpen(false); }}
-                        className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
-                      >
-                        Login / Sign Up
-                      </button>
-                    )}
-                  </div>
-                </div>
-
-                {/* Support Section */}
-                <div className="space-y-4">
-                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Support</p>
-                  <div className="grid gap-2">
                     <button
                       onClick={() => { onNavigate('contact'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                      className="group text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
                     >
-                      Contact Us
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <Phone className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>Contact Us</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
                     </button>
                   </div>
                 </div>
+
+                {/* Separator */}
+                {user && <div className="h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent"></div>}
+
+                {/* PROFILE SECTION (Only if logged in) */}
+                {user && (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 px-2">
+                      <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                      <p className="text-xs font-bold text-purple-300 uppercase tracking-widest">Profile</p>
+                    </div>
+                    <button
+                      onClick={() => { onNavigate('account'); setMenuOpen(false); }}
+                      className="group w-full text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <User className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>My Account</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </button>
+                  </div>
+                )}
+
+                {/* Login Button (if not logged in) */}
+                {!user && (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 px-2">
+                      <div className="w-1 h-4 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+                      <p className="text-xs font-bold text-purple-300 uppercase tracking-widest">Account</p>
+                    </div>
+                    <button
+                      onClick={() => { onNavigate('login'); setMenuOpen(false); }}
+                      className="group w-full text-left py-3.5 px-4 bg-white/5 hover:bg-gradient-to-r hover:from-purple-600/20 hover:to-pink-600/10 rounded-xl font-medium text-gray-200 hover:text-white transition-all duration-300 hover:translate-x-2 border border-white/5 hover:border-purple-500/50 hover:shadow-lg hover:shadow-purple-500/20"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <User className="w-5 h-5 text-purple-400 group-hover:text-purple-300 transition-colors" />
+                          <span>Login / Sign Up</span>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                    </button>
+                  </div>
+                )}
 
               </div>
             </div>
+
+            {/* Bottom Action Buttons - Fixed at bottom */}
+            <div className="relative p-6 border-t border-purple-500/20 bg-gradient-to-r from-[#0a0e27] to-[#1a1f3a] space-y-3">
+              {/* Decorative Top Glow */}
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+
+              {/* Order More Button */}
+              <button
+                onClick={() => { onNavigate('home'); setMenuOpen(false); }}
+                className="group w-full py-4 px-5 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 rounded-xl font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/50 border border-purple-400/20"
+              >
+                <div className="flex items-center justify-center gap-3">
+                  <ShoppingCart className="w-5 h-5" />
+                  <span>Order More</span>
+                </div>
+              </button>
+
+              {/* Logout Button (if logged in) */}
+              {user && (
+                <button
+                  onClick={() => {
+                    logout();
+                    setMenuOpen(false);
+                    onNavigate('home');
+                  }}
+                  className="group w-full py-4 px-5 bg-white/5 hover:bg-red-600/20 rounded-xl font-semibold text-gray-200 hover:text-red-400 transition-all duration-300 border border-white/10 hover:border-red-500/50 hover:shadow-lg hover:shadow-red-500/20"
+                >
+                  <div className="flex items-center justify-center gap-3">
+                    <LogOut className="w-5 h-5" />
+                    <span>Logout</span>
+                  </div>
+                </button>
+              )}
+            </div>
+
           </div>
         </div>
       )}
@@ -829,9 +956,56 @@ const Homepage = ({ onSelectVehicle }) => (
   </div>
 );
 
+// ==========================================
+// VEHICLES ROBOT
+// ==========================================
+const VehiclesRobot = () => {
+  const [message, setMessage] = useState("Hi! I'm your Tesla Guide. 👋");
+  const [isBouncing, setIsBouncing] = useState(false);
+  const messages = [
+    "Did you know? EVs are the future! 🌍",
+    "Tesla's are the safest cars on the road. 🛡️",
+    "Zero emissions, 100% performance. ⚡",
+    "Join the sustainable energy revolution! 🌱",
+    "Autopilot makes driving safer and easier. 🤖"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsBouncing(true);
+      setTimeout(() => setIsBouncing(false), 1000);
+      const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+      setMessage(randomMsg);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end pointer-events-none">
+      <div className={`mb-4 mr-4 bg-white text-gray-800 p-4 rounded-2xl rounded-br-none shadow-2xl max-w-xs transform transition-all duration-500 ${isBouncing ? 'scale-105' : 'scale-100'} animate-fadeIn`}>
+        <p className="font-medium text-sm">{message}</p>
+      </div>
+      <div className="relative w-32 h-24 cursor-pointer pointer-events-auto hover:scale-110 transition-transform duration-300" onClick={() => setIsBouncing(true)}>
+        <div className="animate-bounce-slow">
+          <svg viewBox="0 0 200 150" className="w-full h-full drop-shadow-2xl">
+            <path d="M20,90 Q20,50 60,40 L140,40 Q180,50 180,90 L180,110 Q180,130 160,130 L40,130 Q20,130 20,110 Z" fill="#fff" stroke="#e2e8f0" strokeWidth="2" />
+            <path d="M40,90 Q40,50 60,50 L140,50 Q160,50 160,90 Z" fill="#334155" />
+            <circle cx="70" cy="75" r="8" fill="#3b82f6" className="animate-blink" />
+            <circle cx="130" cy="75" r="8" fill="#3b82f6" className="animate-blink" />
+            <path d="M85,105 Q100,115 115,105" fill="none" stroke="#334155" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="50" cy="130" r="15" fill="#1e293b" />
+            <circle cx="150" cy="130" r="15" fill="#1e293b" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // VEHICLES PAGE - "Find Your Dream Tesla"
 const VehiclesPage = ({ onSelect }) => (
   <div className="min-h-screen pt-24 pb-12 bg-slate-900 relative overflow-hidden">
+    <VehiclesRobot />
     {/* Animated Background */}
     <div className="absolute inset-0 pointer-events-none">
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-S-Desktop-LHD.png')] bg-cover bg-center opacity-5 blur-3xl scale-110 animate-pulse" style={{ animationDuration: '10s' }}></div>
@@ -1998,6 +2172,238 @@ const AccountPage = ({ onNavigate }) => {
     fetchOrders();
   }, [user]);
 
+  // Download Order Summary as HTML
+  const downloadOrderSummary = (order) => {
+    const html = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Order Summary - ${order.vehicleName}</title>
+        <style>
+          body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+          .header { text-align: center; border-bottom: 3px solid #9333ea; padding-bottom: 20px; margin-bottom: 30px; }
+          .header h1 { color: #1e293b; margin: 0; font-size: 32px; }
+          .header p { color: #64748b; margin: 5px 0; }
+          .section { margin: 30px 0; }
+          .section h2 { color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+          .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px; }
+          .item { background: #f8fafc; padding: 15px; border-radius: 8px; }
+          .item-label { color: #64748b; font-size: 14px; margin-bottom: 5px; }
+          .item-value { color: #1e293b; font-weight: bold; font-size: 16px; }
+          .total { background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%); color: white; padding: 20px; border-radius: 12px; text-align: center; font-size: 24px; font-weight: bold; }
+          .footer { text-align: center; margin-top: 40px; color: #94a3b8; font-size: 12px; border-top: 1px solid #e2e8f0; padding-top: 20px; }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>🚗 Tesla Order Summary</h1>
+          <p>Order #${(order._id || '').slice(-8)}</p>
+          <p>Date: ${new Date(order.createdAt).toLocaleDateString()}</p>
+        </div>
+        
+        <div class="section">
+          <h2>Customer Information</h2>
+          <div class="grid">
+            <div class="item">
+              <div class="item-label">Name</div>
+              <div class="item-value">${user.name || 'N/A'}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Email</div>
+              <div class="item-value">${user.email}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Region</div>
+              <div class="item-value">${user.region || 'Not specified'}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Vehicle Details</h2>
+          <div class="grid">
+            <div class="item">
+              <div class="item-label">Model</div>
+              <div class="item-value">${order.vehicleName}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Battery</div>
+              <div class="item-value">${order.selectedOptions?.battery?.name || 'N/A'}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Paint Color</div>
+              <div class="item-value">${order.selectedOptions?.paint?.name || 'N/A'}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Wheels</div>
+              <div class="item-value">${order.selectedOptions?.wheels?.name || 'N/A'}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Interior</div>
+              <div class="item-value">${order.selectedOptions?.interior?.name || 'N/A'}</div>
+            </div>
+            <div class="item">
+              <div class="item-label">Autopilot</div>
+              <div class="item-value">${order.selectedOptions?.autopilot?.name || 'N/A'}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="total">
+            Total Amount: $${order.totalPrice?.toLocaleString() || '0'}
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>Thank you for choosing Tesla! We're excited to have you join the electric revolution.</p>
+          <p>© ${new Date().getFullYear()} Tesla Clone - All rights reserved</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Tesla_Order_Summary_${(order._id || '').slice(-8)}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Download Detailed Bill as HTML
+  const downloadBill = (order) => {
+    const html = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>Invoice - ${order.vehicleName}</title>
+        <style>
+          body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+          .invoice-header { display: flex; justify-content: space-between; border-bottom: 3px solid #1e293b; padding-bottom: 20px; margin-bottom: 30px; }
+          .company { flex: 1; }
+          .company h1 { color: #1e293b; margin: 0; font-size: 36px; }
+          .company p { color: #64748b; margin: 5px 0; }
+          .invoice-details { text-align: right; flex: 1; }
+          .invoice-details h2 { color: #9333ea; margin: 0 0 10px 0; }
+          .invoice-details p { margin: 5px 0; color: #1e293b; }
+          .section { margin: 30px 0; }
+          .section h3 { color: #1e293b; margin-bottom: 15px; }
+          .bill-to { background: #f8fafc; padding: 20px; border-radius: 8px; }
+          table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+          th { background: #1e293b; color: white; padding: 12px; text-align: left; }
+          td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+          tr:hover { background: #f8fafc; }
+          .subtotal-row { font-weight: bold; background: #f1f5f9; }
+          .total-row { font-size: 20px; font-weight: bold; background: linear-gradient(135deg, #9333ea 0%, #3b82f6 100%); color: white; }
+          .footer { text-align: center; margin-top: 50px; color: #94a3b8; font-size: 12px; border-top: 2px solid #e2e8f0; padding-top: 20px; }
+          .status-badge { display: inline-block; background: #10b981; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        </style>
+      </head>
+      <body>
+        <div class="invoice-header">
+          <div class="company">
+            <h1>TESLA</h1>
+            <p>Electric Vehicle Innovation</p>
+            <p>1 Tesla Road, Austin, TX 78725</p>
+            <p>support@tesla.com | +1-888-518-3752</p>
+          </div>
+          <div class="invoice-details">
+            <h2>INVOICE</h2>
+            <p><strong>Invoice #:</strong> INV-${(order._id || '').slice(-8).toUpperCase()}</p>
+            <p><strong>Date:</strong> ${new Date(order.createdAt).toLocaleDateString()}</p>
+            <p><strong>Status:</strong> <span class="status-badge">${order.status || 'Paid'}</span></p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Bill To:</h3>
+          <div class="bill-to">
+            <p><strong>${user.name || 'N/A'}</strong></p>
+            <p>${user.email}</p>
+            <p>Region: ${user.region || 'Not specified'}</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Order Details:</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Item Description</th>
+                <th>Details</th>
+                <th style="text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>${order.vehicleName}</strong></td>
+                <td>Base Vehicle</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.7)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td>Battery Upgrade</td>
+                <td>${order.selectedOptions?.battery?.name || 'Standard'}</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.1)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td>Paint</td>
+                <td>${order.selectedOptions?.paint?.name || 'N/A'}</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.05)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td>Wheels</td>
+                <td>${order.selectedOptions?.wheels?.name || 'N/A'}</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.05)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td>Interior</td>
+                <td>${order.selectedOptions?.interior?.name || 'N/A'}</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.05)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td>Autopilot</td>
+                <td>${order.selectedOptions?.autopilot?.name || 'N/A'}</td>
+                <td style="text-align: right;">$${(order.totalPrice * 0.05)?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr class="subtotal-row">
+                <td colspan="2">Subtotal</td>
+                <td style="text-align: right;">$${order.totalPrice?.toLocaleString() || '0'}</td>
+              </tr>
+              <tr>
+                <td colspan="2">Tax (0%)</td>
+                <td style="text-align: right;">$0</td>
+              </tr>
+              <tr class="total-row">
+                <td colspan="2"><strong>TOTAL DUE</strong></td>
+                <td style="text-align: right;"><strong>$${order.totalPrice?.toLocaleString() || '0'}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="footer">
+          <p><strong>Payment Terms:</strong> Full payment received via credit card</p>
+          <p><strong>Delivery:</strong> Estimated 4-8 weeks from order confirmation</p>
+          <p style="margin-top: 20px;">Thank you for your business! Questions? Contact us at support@tesla.com</p>
+          <p>© ${new Date().getFullYear()} Tesla Clone - All rights reserved</p>
+        </div>
+      </body>
+      </html>
+    `;
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Tesla_Invoice_${(order._id || '').slice(-8)}.html`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center pt-20 bg-gradient-to-br from-slate-50 to-purple-50">
@@ -2082,7 +2488,7 @@ const AccountPage = ({ onNavigate }) => {
                       </div>
                     </div>
                     {order.selectedOptions && (
-                      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
+                      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm mb-4">
                         <div>
                           <span className="text-gray-600">Battery:</span>
                           <p className="font-medium">{order.selectedOptions.battery?.name || 'N/A'}</p>
@@ -2105,10 +2511,26 @@ const AccountPage = ({ onNavigate }) => {
                         </div>
                       </div>
                     )}
-                    <div className="mt-4 pt-4 border-t border-purple-200">
+                    <div className="mt-4 pt-4 border-t border-purple-200 flex items-center justify-between">
                       <span className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">
                         {order.status || 'Paid'}
                       </span>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => downloadOrderSummary(order)}
+                          className="flex items-center gap-2 bg-white border-2 border-purple-200 text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-purple-50 hover:border-purple-400 transition-all text-sm"
+                        >
+                          <TrendingUp className="w-4 h-4" />
+                          Download Summary
+                        </button>
+                        <button
+                          onClick={() => downloadBill(order)}
+                          className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition-all text-sm"
+                        >
+                          <DollarSign className="w-4 h-4" />
+                          Download Bill
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -2196,79 +2618,257 @@ const AnimatedStat = ({ value, label, prefix = '', suffix = '' }) => {
 
 
 
-const ChargingPage = () => (
-  <div className="min-h-screen bg-[#020617]">
+// ==========================================
+// CHARGING PAGE SUB-COMPONENTS
+// ==========================================
+
+const SuperchargerFinder = () => {
+  const [filter, setFilter] = useState('all');
+
+  return (
+    <div className="bg-white/5 rounded-3xl p-8 border border-white/10 backdrop-blur-md">
+      <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+        <MapPin className="w-6 h-6 text-red-500" /> Find Us
+      </h3>
+
+      {/* Mock Map Interface */}
+      <div className="relative h-96 bg-slate-800 rounded-2xl overflow-hidden mb-6 group">
+        <div className="absolute inset-0 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover opacity-30" />
+
+        {/* Mock Pins */}
+        <div className="absolute top-1/3 left-1/4 group-hover:scale-110 transition-transform cursor-pointer">
+          <MapPin className="w-8 h-8 text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-black text-xs font-bold px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+            250kW Available
+          </div>
+        </div>
+        <div className="absolute top-1/2 left-1/2 group-hover:scale-110 transition-transform cursor-pointer delay-75">
+          <MapPin className="w-8 h-8 text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+        </div>
+        <div className="absolute bottom-1/3 right-1/3 group-hover:scale-110 transition-transform cursor-pointer delay-150">
+          <MapPin className="w-8 h-8 text-gray-400" /> {/* Busy */}
+        </div>
+
+        {/* Map Controls */}
+        <div className="absolute bottom-4 right-4 flex gap-2">
+          <button className="bg-white text-black p-2 rounded-lg font-bold hover:bg-gray-200">+</button>
+          <button className="bg-white text-black p-2 rounded-lg font-bold hover:bg-gray-200">-</button>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="flex gap-3 overflow-x-auto pb-2">
+        {['All', 'Superchargers', 'Destination', 'Service Centers'].map(f => (
+          <button
+            key={f}
+            onClick={() => setFilter(f.toLowerCase())}
+            className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-all ${filter === f.toLowerCase()
+              ? 'bg-red-600 text-white shadow-[0_0_15px_rgba(220,38,38,0.5)]'
+              : 'bg-white/10 text-gray-300 hover:bg-white/20'
+              }`}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const ChargingCalculator = () => {
+  const [miles, setMiles] = useState(10000);
+  const [gasPrice, setGasPrice] = useState(4.50);
+  const [elecPrice, setElecPrice] = useState(0.15);
+
+  const gasCost = (miles / 25) * gasPrice; // 25 mpg avg
+  const elecCost = (miles / 4) * elecPrice; // 4 miles/kWh avg
+  const savings = gasCost - elecCost;
+
+  return (
+    <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-8 border border-white/10 shadow-2xl">
+      <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+        <DollarSign className="w-6 h-6 text-green-400" /> Savings Calculator
+      </h3>
+
+      <div className="space-y-6">
+        <div>
+          <label className="text-gray-400 text-sm mb-2 block">Annual Mileage</label>
+          <input
+            type="range" min="5000" max="50000" step="1000"
+            value={miles} onChange={(e) => setMiles(Number(e.target.value))}
+            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-green-500"
+          />
+          <div className="text-right text-white font-bold mt-1">{miles.toLocaleString()} mi</div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="bg-red-900/20 p-4 rounded-xl border border-red-500/20">
+            <div className="text-gray-400 text-xs uppercase">Gas Cost</div>
+            <div className="text-2xl font-bold text-red-400">${Math.round(gasCost).toLocaleString()}</div>
+          </div>
+          <div className="bg-green-900/20 p-4 rounded-xl border border-green-500/20">
+            <div className="text-gray-400 text-xs uppercase">EV Cost</div>
+            <div className="text-2xl font-bold text-green-400">${Math.round(elecCost).toLocaleString()}</div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 p-6 rounded-2xl text-center shadow-[0_0_30px_rgba(34,197,94,0.3)]">
+          <div className="text-green-100 text-sm font-medium mb-1">Estimated 5-Year Savings</div>
+          <div className="text-4xl font-bold text-white">${Math.round(savings * 5).toLocaleString()}</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const HomeChargingSetup = ({ onNavigate }) => {
+  const [step, setStep] = useState(1);
+
+  return (
+    <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+      <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+        <Home className="w-6 h-6 text-blue-400" /> Home Charging
+      </h3>
+
+      {step === 1 ? (
+        <div className="space-y-6">
+          <p className="text-gray-300">Where do you park?</p>
+          <div className="grid grid-cols-2 gap-4">
+            <button onClick={() => setStep(2)} className="p-4 bg-white/10 rounded-xl hover:bg-blue-600/20 hover:border-blue-500 border border-transparent transition-all text-left">
+              <div className="font-bold text-white">Garage</div>
+              <div className="text-xs text-gray-400 mt-1">Private enclosed space</div>
+            </button>
+            <button onClick={() => setStep(2)} className="p-4 bg-white/10 rounded-xl hover:bg-blue-600/20 hover:border-blue-500 border border-transparent transition-all text-left">
+              <div className="font-bold text-white">Driveway</div>
+              <div className="text-xs text-gray-400 mt-1">Outdoor private space</div>
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div className="space-y-6 animate-fadeIn">
+          <div className="bg-blue-900/30 p-6 rounded-2xl border border-blue-500/30">
+            <h4 className="text-xl font-bold text-white mb-2">Recommended: Wall Connector</h4>
+            <p className="text-gray-300 text-sm mb-4">Fastest home charging. Add up to 44 miles of range per hour.</p>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl font-bold text-white">$475</span>
+              <button onClick={() => onNavigate('vehicles')} className="bg-white text-black px-4 py-2 rounded-lg font-bold hover:bg-gray-200 transition-all hover:scale-105">Order Now</button>
+            </div>
+          </div>
+          <button onClick={() => setStep(1)} className="text-gray-400 text-sm hover:text-white">← Start Over</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const EcoMetrics = () => (
+  <div className="bg-white/5 rounded-3xl p-8 border border-white/10">
+    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+      <Leaf className="w-6 h-6 text-green-500" /> Impact
+    </h3>
+
+    <div className="space-y-6">
+      <div className="relative pt-4">
+        <div className="flex justify-between text-sm text-gray-400 mb-2">
+          <span>CO2 Emissions (g/mi)</span>
+        </div>
+
+        {/* Bar Chart */}
+        <div className="space-y-3">
+          <div>
+            <div className="flex justify-between text-xs text-gray-500 mb-1">
+              <span>Gas Car</span>
+              <span>400g</span>
+            </div>
+            <div className="h-4 bg-gray-700 rounded-full overflow-hidden">
+              <div className="h-full bg-red-500 w-full"></div>
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-between text-xs text-gray-500 mb-1">
+              <span>Tesla</span>
+              <span>0g</span>
+            </div>
+            <div className="h-4 bg-gray-700 rounded-full overflow-hidden">
+              <div className="h-full bg-green-500 w-[5%]"></div> {/* Small amount for manufacturing offset visual */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p className="text-gray-400 text-sm italic">
+        "Driving electric reduces your carbon footprint significantly, even when accounting for electricity generation."
+      </p>
+    </div>
+  </div>
+);
+
+const ChargingPage = ({ onNavigate }) => (
+  <div className="min-h-screen bg-[#020617] text-white relative overflow-hidden">
+    {/* Animated Background Particles */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '4s' }} />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '6s' }} />
+      <div className="absolute top-1/2 right-1/3 w-64 h-64 bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s' }} />
+    </div>
+
     {/* Hero Section */}
-    <div className="relative h-[80vh] overflow-hidden">
+    <div className="relative h-[70vh] overflow-hidden">
       <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-60"
+        autoPlay loop muted playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
         <source src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Supercharger-Hero-Desktop-NA.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#020617]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-[#020617]/40 to-[#020617]" />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-        <h1 className="text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">
+        <h1 className="text-6xl lg:text-8xl font-bold mb-6 tracking-tighter bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
           Power Anywhere
         </h1>
         <p className="text-xl text-gray-200 max-w-2xl mb-10">
-          Go anywhere with the world's largest and most reliable fast charging network.
+          The world's largest and most reliable fast charging network.
         </p>
-        <button className="bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition-all transform hover:scale-105">
-          Find a Supercharger
-        </button>
+        <div className="flex gap-4">
+          <button className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+            Find a Supercharger
+          </button>
+          <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 px-8 py-3 rounded-full font-bold hover:bg-white/20 transition-all hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+            Home Charging
+          </button>
+        </div>
       </div>
     </div>
 
-    {/* Stats Section */}
-    <div className="max-w-7xl mx-auto px-6 -mt-20 relative z-10">
-      <div className="grid md:grid-cols-4 gap-6">
+    {/* Main Content Grid */}
+    <div className="max-w-7xl mx-auto px-6 pb-24 -mt-20 relative z-10">
+      {/* Stats Row */}
+      <div className="grid md:grid-cols-4 gap-6 mb-12">
         <AnimatedStat value="50000" label="Superchargers" suffix="+" />
         <AnimatedStat value="15" label="Minutes to Charge" suffix=" min" />
         <AnimatedStat value="99.9" label="Network Uptime" suffix="%" />
         <AnimatedStat value="24" label="Support Available" suffix="/7" />
       </div>
+
+      {/* Interactive Sections */}
+      <div className="grid lg:grid-cols-2 gap-8 mb-8">
+        <SuperchargerFinder />
+        <ChargingCalculator />
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-8">
+        <HomeChargingSetup onNavigate={onNavigate} />
+        <EcoMetrics />
+      </div>
     </div>
 
-    {/* Tech Section */}
-    <div className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-white mb-12 text-center">Charging Solutions</h2>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-purple-500/30 transition-all group">
-            <img
-              src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Home-Charging-Wall-Connector-Desktop.jpg"
-              alt="Home Charging"
-              className="w-full h-64 object-cover rounded-2xl mb-6 group-hover:scale-105 transition-transform duration-500"
-            />
-            <h3 className="text-2xl font-bold text-white mb-4">Home Charging</h3>
-            <p className="text-gray-400 mb-6">
-              Wake up to a full charge every morning. Wall Connector is the most convenient charging solution for houses, apartments, condos and workplaces.
-            </p>
-            <button className="text-purple-400 font-semibold group-hover:text-purple-300 flex items-center gap-2">
-              Shop Wall Connector <TrendingUp className="w-4 h-4" />
-            </button>
-          </div>
-          <div className="bg-white/5 rounded-3xl p-8 border border-white/10 hover:border-purple-500/30 transition-all group">
-            <img
-              src="https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Supercharging-Desktop-Global.jpg"
-              alt="Supercharging"
-              className="w-full h-64 object-cover rounded-2xl mb-6 group-hover:scale-105 transition-transform duration-500"
-            />
-            <h3 className="text-2xl font-bold text-white mb-4">On the Road</h3>
-            <p className="text-gray-400 mb-6">
-              Superchargers are located on major routes near convenient amenities. Plug in, grab a coffee and get back on the road.
-            </p>
-            <button className="text-purple-400 font-semibold group-hover:text-purple-300 flex items-center gap-2">
-              View Map <MapPin className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
+    {/* Footer CTA */}
+    <div className="bg-gradient-to-t from-purple-900/20 via-blue-900/10 to-transparent py-24 text-center relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(168,85,247,0.1),transparent_70%)]" />
+      <h2 className="text-4xl font-bold mb-8 relative z-10">Ready to go electric?</h2>
+      <button onClick={() => onNavigate('vehicles')} className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-12 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] transition-all hover:scale-105 relative z-10">
+        Order Your Tesla
+      </button>
     </div>
   </div>
 );
@@ -2619,7 +3219,7 @@ const ServicingPage = () => {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-12 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <div className="min-h-screen pt-24 pb-12 bg-gradient-to-br from-[#0a0e1a] via-[#1a2347] to-[#0d1117]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -3624,7 +4224,7 @@ const TeslaApp = () => {
         {page === 'servicing' && <ServicingPage />}
         {page === 'contact' && <ContactPage />}
         {page === 'customer-care' && <CustomerCarePage />}
-        {page === 'charging' && <ChargingPage />}
+        {page === 'charging' && <ChargingPage onNavigate={setPage} />}
         {page === 'discover' && <DiscoverPage />}
         {page === 'shop' && <ShopPage />}
         {page === 'payment' && <PaymentPage onNavigate={setPage} />}

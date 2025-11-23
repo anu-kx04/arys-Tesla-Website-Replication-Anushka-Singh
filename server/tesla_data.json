@@ -310,6 +310,118 @@
       "id": 1763885122517,
       "status": "Paid",
       "createdAt": "2025-11-23T08:05:22.517Z"
+    },
+    {
+      "vehicleId": "cybertruck",
+      "vehicleName": "Cybertruck",
+      "config": {
+        "battery": "awd",
+        "paint": "steel",
+        "wheels": "20",
+        "interior": "black",
+        "autopilot": "basic"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "awd",
+          "name": "All-Wheel Drive",
+          "range": "340 mi",
+          "topSpeed": "112 mph",
+          "acceleration": "4.1s",
+          "price": 0
+        },
+        "paint": {
+          "id": "steel",
+          "name": "Stainless Steel",
+          "hex": "#c0c0c0",
+          "price": 0
+        },
+        "wheels": {
+          "id": "20",
+          "name": "20\" Cybertruck Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "basic",
+          "name": "Autopilot",
+          "features": [
+            "Traffic-Aware Cruise Control",
+            "Autosteer"
+          ],
+          "price": 0
+        }
+      },
+      "totalPrice": 60990,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763888963993,
+      "status": "Paid",
+      "createdAt": "2025-11-23T09:09:23.993Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "white",
+        "wheels": "18",
+        "interior": "black",
+        "autopilot": "basic"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "white",
+          "name": "Pearl White Multi-Coat",
+          "hex": "#f4f6f8",
+          "price": 0
+        },
+        "wheels": {
+          "id": "18",
+          "name": "18\" Aero Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "basic",
+          "name": "Autopilot",
+          "features": [
+            "Traffic-Aware Cruise Control",
+            "Autosteer"
+          ],
+          "price": 0
+        }
+      },
+      "totalPrice": 38990,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763889966442,
+      "status": "Paid",
+      "createdAt": "2025-11-23T09:26:06.442Z"
     }
   ],
   "analytics": [
