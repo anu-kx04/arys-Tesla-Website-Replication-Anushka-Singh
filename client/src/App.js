@@ -9,7 +9,7 @@ const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 // Session storage keys
 const SESSION_STORAGE_KEY = 'tesla_user_session';
 const SESSION_TIMESTAMP_KEY = 'tesla_session_timestamp';
-const SESSION_MAX_AGE = 24 * 60 * 60 * 1000; // 24 hours
+const SESSION_MAX_AGE = 30 * 60 * 1000; // 30 minutes
 
 // Helper functions for session storage
 const saveSessionToStorage = (userData) => {
@@ -124,19 +124,39 @@ const AuthProvider = ({ children }) => {
       // First, check localStorage for cached session
       const cachedUser = getSessionFromStorage();
       if (cachedUser) {
+        console.log('✅ Restored user session from localStorage:', cachedUser.email);
         setUser(cachedUser);
+        setIsLoading(false); // Set loading false immediately with cached session
       }
 
-      // Then verify with backend
-      const result = await authAPI.checkStatus();
-      if (result.success && result.data && result.data.isAuthenticated) {
-        setUser(result.data.user);
-        saveSessionToStorage(result.data.user);
-      } else {
-        setUser(null);
-        clearSessionStorage();
+      // Then verify with backend (non-blocking)
+      try {
+        const result = await authAPI.checkStatus();
+        if (result.success && result.data && result.data.isAuthenticated) {
+          console.log('✅ Backend session verified:', result.data.user.email);
+          setUser(result.data.user);
+          saveSessionToStorage(result.data.user);
+        } else if (!cachedUser) {
+          // Only clear if there was no cached session
+          console.log('ℹ️ No cached session and backend not authenticated');
+          setUser(null);
+          clearSessionStorage();
+        } else {
+          // Keep cached session even if backend verification fails
+          // User will be logged out only when they try to make an API call
+          console.log('⚠️ Backend verification failed but keeping cached session');
+        }
+      } catch (error) {
+        console.error('Session verification error:', error);
+        // Keep cached session on error
+        if (!cachedUser) {
+          setUser(null);
+        }
       }
-      setIsLoading(false);
+
+      if (!cachedUser) {
+        setIsLoading(false);
+      }
     };
     initAuth();
   }, []);

@@ -21,12 +21,29 @@ const PORT = process.env.PORT || 5001;
 // Security Headers
 app.use(helmet());
 
-// CORS Configuration
+// CORS Configuration - Allow both local and production frontend
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://arys-tesla-website-replication-anushka.onrender.com',
+  'https://tesla-website-replication-anushka-singh.vercel.app' // Add Vercel if using
+];
+
 app.use(cors({
-  origin: true,
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`CORS blocked origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['set-cookie']
 }));
 
 // Body Parsing
@@ -36,11 +53,11 @@ app.use(express.urlencoded({ extended: true }));
 // Logging
 app.use(morgan('dev'));
 
-// Session Management (2-minute timeout for testing, with refresh token support)
+// Session Management (30-minute timeout with automatic refresh)
 app.use(session({
   store: new FileStore({
     path: './sessions',
-    ttl: 120, // 2 minutes (in seconds) - FOR TESTING
+    ttl: 1800, // 30 minutes (in seconds)
     retries: 0
   }),
   name: 'sessionId',
@@ -49,9 +66,9 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: false, // Set to true in production with HTTPS
-    sameSite: 'lax',
-    maxAge: 1000 * 60 * 2 // 2 minutes (120 seconds) - FOR TESTING
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-site in production
+    maxAge: 1000 * 60 * 30 // 30 minutes
   },
   rolling: true // Reset session expiry on each request
 }));

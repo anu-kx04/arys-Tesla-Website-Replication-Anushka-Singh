@@ -422,20 +422,188 @@
       "id": 1763889966442,
       "status": "Paid",
       "createdAt": "2025-11-23T09:26:06.442Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "white",
+        "wheels": "18",
+        "interior": "black",
+        "autopilot": "basic"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "white",
+          "name": "Pearl White Multi-Coat",
+          "hex": "#f4f6f8",
+          "price": 0
+        },
+        "wheels": {
+          "id": "18",
+          "name": "18\" Aero Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "basic",
+          "name": "Autopilot",
+          "features": [
+            "Traffic-Aware Cruise Control",
+            "Autosteer"
+          ],
+          "price": 0
+        }
+      },
+      "totalPrice": 38990,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763903155055,
+      "status": "Paid",
+      "createdAt": "2025-11-23T13:05:55.055Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "red",
+        "wheels": "19",
+        "interior": "white",
+        "autopilot": "fsd"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "red",
+          "name": "Ultra Red",
+          "hex": "#dc2626",
+          "price": 2000
+        },
+        "wheels": {
+          "id": "19",
+          "name": "19\" Sport Wheels",
+          "price": 1500
+        },
+        "interior": {
+          "id": "white",
+          "name": "Black & White",
+          "price": 1000,
+          "hex": "#fff"
+        },
+        "autopilot": {
+          "id": "fsd",
+          "name": "Full Self-Driving",
+          "features": [
+            "Traffic Light and Stop Sign Control",
+            "Autosteer on City Streets"
+          ],
+          "price": 12000
+        }
+      },
+      "totalPrice": 55490,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763903725559,
+      "status": "Paid",
+      "createdAt": "2025-11-23T13:15:25.561Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "performance",
+        "paint": "blue",
+        "wheels": "18",
+        "interior": "black",
+        "autopilot": "fsd"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "performance",
+          "name": "Performance",
+          "range": "315 mi",
+          "topSpeed": "162 mph",
+          "acceleration": "3.1s",
+          "price": 12500
+        },
+        "paint": {
+          "id": "blue",
+          "name": "Deep Blue Metallic",
+          "hex": "#1e3a8a",
+          "price": 1000
+        },
+        "wheels": {
+          "id": "18",
+          "name": "18\" Aero Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "fsd",
+          "name": "Full Self-Driving",
+          "features": [
+            "Traffic Light and Stop Sign Control",
+            "Autosteer on City Streets"
+          ],
+          "price": 12000
+        }
+      },
+      "totalPrice": 64490,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763904770971,
+      "status": "Paid",
+      "createdAt": "2025-11-23T13:32:50.971Z"
     }
   ],
   "analytics": [
     {
       "filterType": "style",
       "filterValue": "Any",
-      "count": 2,
-      "lastUpdated": "2025-11-23T08:04:55.791Z"
+      "count": 4,
+      "lastUpdated": "2025-11-23T14:56:10.333Z"
     },
     {
       "filterType": "passengers",
       "filterValue": "6",
-      "count": 1,
-      "lastUpdated": "2025-11-23T06:17:10.230Z"
+      "count": 2,
+      "lastUpdated": "2025-11-23T13:16:44.446Z"
     },
     {
       "filterType": "priority",
@@ -446,14 +614,14 @@
     {
       "filterType": "passengers",
       "filterValue": "5",
-      "count": 1,
-      "lastUpdated": "2025-11-23T08:04:55.792Z"
+      "count": 2,
+      "lastUpdated": "2025-11-23T14:56:10.339Z"
     },
     {
       "filterType": "priority",
       "filterValue": "Balanced",
-      "count": 1,
-      "lastUpdated": "2025-11-23T08:04:55.793Z"
+      "count": 3,
+      "lastUpdated": "2025-11-23T14:56:10.351Z"
     }
   ],
   "recommendations": [
@@ -554,6 +722,104 @@
       ],
       "id": 1763885095794,
       "createdAt": "2025-11-23T08:04:55.794Z"
+    },
+    {
+      "userId": 1763827841503,
+      "preferences": {
+        "priceRange": {
+          "min": 30000,
+          "max": 120000
+        },
+        "dailyDistance": 160,
+        "passengers": 6,
+        "style": "Any",
+        "priority": "Balanced",
+        "towing": false,
+        "fsd": true
+      },
+      "recommendations": [
+        {
+          "vehicleId": "modelY",
+          "vehicleName": "Model Y Long Range",
+          "score": 65,
+          "reasons": [
+            "Fits budget: $48,990",
+            "Seats 7 people"
+          ],
+          "estimatedPrice": 48990
+        },
+        {
+          "vehicleId": "modelX",
+          "vehicleName": "Model X Long Range",
+          "score": 60,
+          "reasons": [
+            "Fits budget: $99,990",
+            "Seats 7 people"
+          ],
+          "estimatedPrice": 99990
+        },
+        {
+          "vehicleId": "modelX",
+          "vehicleName": "Model X Plaid",
+          "score": 60,
+          "reasons": [
+            "Fits budget: $1,19,990",
+            "Seats 7 people"
+          ],
+          "estimatedPrice": 119990
+        }
+      ],
+      "id": 1763903804465,
+      "createdAt": "2025-11-23T13:16:44.465Z"
+    },
+    {
+      "userId": 1763827841503,
+      "preferences": {
+        "priceRange": {
+          "min": 30000,
+          "max": 115000
+        },
+        "dailyDistance": 130,
+        "passengers": 5,
+        "style": "Any",
+        "priority": "Balanced",
+        "towing": false,
+        "fsd": true
+      },
+      "recommendations": [
+        {
+          "vehicleId": "model3",
+          "vehicleName": "Model 3 Long Range AWD",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $46,990",
+            "Range (333mi) covers daily drive"
+          ],
+          "estimatedPrice": 46990
+        },
+        {
+          "vehicleId": "modelS",
+          "vehicleName": "Model S Long Range",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $89,990",
+            "Range (396mi) covers daily drive"
+          ],
+          "estimatedPrice": 89990
+        },
+        {
+          "vehicleId": "cybertruck",
+          "vehicleName": "Cybertruck All-Wheel Drive",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $60,990",
+            "Range (340mi) covers daily drive"
+          ],
+          "estimatedPrice": 60990
+        }
+      ],
+      "id": 1763909770360,
+      "createdAt": "2025-11-23T14:56:10.360Z"
     }
   ]
 }
