@@ -2362,6 +2362,14 @@ const PaymentPage = ({ onNavigate }) => {
 
   const handlePayment = async (e) => {
     e.preventDefault();
+
+    // Check if user is still logged in
+    if (!user) {
+      alert('❌ Please login to complete your purchase');
+      onNavigate('login');
+      return;
+    }
+
     setLoading(true);
 
     // Simulate payment processing
@@ -2377,7 +2385,16 @@ const PaymentPage = ({ onNavigate }) => {
       alert('✅ Payment Successful! Order Placed.');
       onNavigate('account');
     } else {
-      alert('❌ Payment Failed: ' + (result.message || 'Unknown error'));
+      // Show specific error message from backend
+      const errorMsg = result.error || result.data?.message || 'Unable to process payment. Please try again.';
+      console.error('Payment failed:', result);
+      alert('❌ Payment Failed: ' + errorMsg);
+
+      // If unauthorized, redirect to login
+      if (result.status === 401) {
+        alert('Your session has expired. Please login again.');
+        onNavigate('login');
+      }
     }
     setLoading(false);
   };

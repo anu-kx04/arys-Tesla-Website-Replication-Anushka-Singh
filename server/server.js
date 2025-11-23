@@ -45,7 +45,7 @@ app.use(session({
     httpOnly: true,
     secure: false, // Set to true in production with HTTPS
     sameSite: 'lax',
-    maxAge: 1000 * 60 * 60 * 24 // 24 hours
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days (increased from 24 hours)
   }
 }));
 

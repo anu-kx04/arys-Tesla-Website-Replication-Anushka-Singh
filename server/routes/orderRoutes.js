@@ -8,11 +8,28 @@ const db = require('../database'); // JSON database
  */
 router.post('/', async (req, res) => {
     try {
-        // Check authentication
+        // Enhanced authentication check with detailed logging
+        console.log('📝 Order creation attempt - Session data:', {
+            hasSession: !!req.session,
+            userId: req.session?.userId,
+            userEmail: req.session?.userEmail
+        });
+
         if (!req.session?.userId) {
+            console.error('❌ Order creation failed: No active session or userId');
             return res.status(401).json({
                 success: false,
-                message: 'Please login to place an order'
+                message: 'Please login to place an order. Your session may have expired.'
+            });
+        }
+
+        // Validate required order data
+        const { vehicleName, totalPrice } = req.body;
+        if (!vehicleName || !totalPrice) {
+            console.error('❌ Order creation failed: Missing required fields', req.body);
+            return res.status(400).json({
+                success: false,
+                message: 'Missing required order information (vehicle name or price)'
             });
         }
 
@@ -21,8 +38,12 @@ router.post('/', async (req, res) => {
             userId: req.session.userId
         };
 
+        console.log('✅ Creating order:', orderData);
+
         // Create order
         const order = db.createOrder(orderData);
+
+        console.log('✅ Order created successfully:', order.id);
 
         res.status(201).json({
             success: true,
@@ -30,10 +51,10 @@ router.post('/', async (req, res) => {
             order
         });
     } catch (error) {
-        console.error('Order creation error:', error);
+        console.error('❌ Order creation error:', error);
         res.status(500).json({
             success: false,
-            message: 'Failed to create order',
+            message: 'Failed to create order: ' + error.message,
             error: error.message
         });
     }
