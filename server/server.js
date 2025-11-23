@@ -54,6 +54,9 @@ app.use(express.urlencoded({ extended: true }));
 // Logging
 app.use(morgan('dev'));
 
+// Trust proxy - CRITICAL for Render deployment with HTTPS
+app.set('trust proxy', 1);
+
 // Session Management (30-minute timeout with automatic refresh)
 app.use(session({
   store: new FileStore({
@@ -69,7 +72,8 @@ app.use(session({
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production', // HTTPS only in production
     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-site in production
-    maxAge: 1000 * 60 * 30 // 30 minutes
+    maxAge: 1000 * 60 * 30, // 30 minutes
+    path: '/' // Explicitly set cookie path
   },
   rolling: true // Reset session expiry on each request
 }));

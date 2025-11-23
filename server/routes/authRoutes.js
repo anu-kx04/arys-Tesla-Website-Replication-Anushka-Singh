@@ -163,7 +163,15 @@ router.post('/logout', (req, res) => {
  */
 router.get('/check', (req, res) => {
   try {
+    // Debug logging
+    console.log('=== AUTH CHECK ===');
+    console.log('Session ID:', req.sessionID);
+    console.log('Session exists:', !!req.session);
+    console.log('Session userId:', req.session?.userId);
+    console.log('Cookies:', req.headers.cookie);
+
     if (!req.session || !req.session.userId) {
+      console.log('❌ No session or userId found');
       return res.json({
         success: true,
         isAuthenticated: false
@@ -173,6 +181,7 @@ router.get('/check', (req, res) => {
     const user = db.findUserById(req.session.userId);
 
     if (!user) {
+      console.log('❌ User not found for userId:', req.session.userId);
       req.session.destroy();
       return res.json({
         success: true,
@@ -182,6 +191,8 @@ router.get('/check', (req, res) => {
 
     // Remove password from response
     const { password, ...userWithoutPassword } = user;
+
+    console.log('✅ User authenticated:', user.email);
 
     res.json({
       success: true,
