@@ -4,7 +4,7 @@ import { Car, Menu, X, User, ShoppingCart, Check, Loader2, Zap, Settings, Gauge,
 // ==========================================
 // 0. API SERVICE (Real Backend Only - No Mock Fallback)
 // ==========================================
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 // Session storage keys
 const SESSION_STORAGE_KEY = 'tesla_user_session';
