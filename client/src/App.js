@@ -554,6 +554,9 @@ const STATIC_INTERIORS = {
 // 4. UI COMPONENTS
 // ==========================================
 
+// ==========================================
+// NAVIGATION COMPONENT
+// ==========================================
 const Navigation = ({ currentPage, onNavigate }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -587,8 +590,11 @@ const Navigation = ({ currentPage, onNavigate }) => {
                 {user.name || user.email.split('@')[0]}
               </button>
               <button
-                onClick={logout}
-                className="hover:bg-purple-50 px-3 py-2 rounded-lg transition-all duration-300 hover:text-purple-600"
+                onClick={() => {
+                  logout();
+                  onNavigate('home');
+                }}
+                className="hover:bg-red-50 px-3 py-2 rounded-lg transition-all duration-300 hover:text-red-600 text-red-400"
               >
                 Logout
               </button>
@@ -620,53 +626,101 @@ const Navigation = ({ currentPage, onNavigate }) => {
       {menuOpen && (
         <div className="fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-80 bg-white p-8 flex flex-col gap-6 overflow-y-auto shadow-2xl border-l border-purple-100">
-            <div className="flex justify-end">
+          <div className="absolute right-0 top-0 bottom-0 w-96 bg-white shadow-2xl border-l border-purple-100 flex flex-col">
+            <div className="flex justify-end p-6 pb-0">
               <button onClick={() => setMenuOpen(false)} className="hover:bg-purple-50 p-2 rounded-full transition-all duration-300">
                 <X className="w-6 h-6 text-gray-600" />
               </button>
             </div>
-            <div className="flex flex-col gap-2">
-              {Object.values(VEHICLES).map(v => (
-                <button
-                  key={v.id}
-                  onClick={() => { onNavigate('home'); setMenuOpen(false); }}
-                  className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600"
-                >
-                  {v.name}
-                </button>
-              ))}
-              <button className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600">Solar Roof</button>
-              <button className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600">Solar Panels</button>
-              <button className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600">Powerwall</button>
-              {user && (
-                <button
-                  onClick={() => { onNavigate('account'); setMenuOpen(false); }}
-                  className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm flex items-center gap-2 transition-all duration-300 hover:text-purple-600"
-                >
-                  <User className="w-4 h-4" />
-                  My Account
-                </button>
-              )}
-              {user && (
-                <button
-                  onClick={() => { onNavigate('account'); setMenuOpen(false); }}
-                  className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm flex items-center gap-2 transition-all duration-300 hover:text-purple-600"
-                >
-                  <CreditCard className="w-4 h-4" />
-                  Payment Methods
-                </button>
-              )}
-              <button
-                onClick={() => {
-                  if (!user) onNavigate('login');
-                  else { logout(); }
-                  setMenuOpen(false);
-                }}
-                className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600"
-              >
-                {user ? 'Logout' : 'Account'}
-              </button>
+            <div className="flex-1 overflow-y-auto px-6 py-4">
+              <div className="flex flex-col gap-2">
+                {/* Main Navigation */}
+                <div className="border-b border-gray-200 pb-4 mb-2">
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Vehicles</p>
+                  {Object.values(VEHICLES).map(v => (
+                    <button
+                      key={v.id}
+                      onClick={() => { onNavigate('customize', v.id); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                    >
+                      {v.name}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Services */}
+                <div className="border-b border-gray-200 pb-4 mb-2">
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Services</p>
+                  <button
+                    onClick={() => { onNavigate('advisor'); setMenuOpen(false); }}
+                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800 flex items-center gap-2"
+                  >
+                    ✨ Smart Choice Advisor
+                  </button>
+                  <button
+                    onClick={() => { onNavigate('servicing'); setMenuOpen(false); }}
+                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                  >
+                    Servicing & Maintenance
+                  </button>
+                  <button
+                    onClick={() => { onNavigate('charging'); setMenuOpen(false); }}
+                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                  >
+                    Charging Network
+                  </button>
+                  <button
+                    onClick={() => { onNavigate('customer-care'); setMenuOpen(false); }}
+                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                  >
+                    Customer Care
+                  </button>
+                </div>
+
+                {/* Account Section */}
+                <div className="border-b border-gray-200 pb-4 mb-2">
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Account</p>
+                  {user ? (
+                    <>
+                      <button
+                        onClick={() => { onNavigate('account'); setMenuOpen(false); }}
+                        className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm flex items-center gap-2 transition-all duration-300 hover:text-purple-600 text-gray-800"
+                      >
+                        <User className="w-4 h-4" />
+                        My Account
+                      </button>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setMenuOpen(false);
+                          onNavigate('home');
+                        }}
+                        className="text-left py-3 px-4 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 rounded-lg font-medium text-sm transition-all duration-300 text-purple-600 hover:text-purple-700 font-semibold border-2 border-purple-200 hover:border-purple-400"
+                      >
+                        🚪 Logout
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => { onNavigate('login'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                    >
+                      Login / Sign Up
+                    </button>
+                  )}
+                </div>
+
+                {/* Support */}
+                <div>
+                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Support</p>
+                  <button
+                    onClick={() => { onNavigate('contact'); setMenuOpen(false); }}
+                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

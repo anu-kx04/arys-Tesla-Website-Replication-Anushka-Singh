@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 const helmet = require('helmet');
 const morgan = require('morgan');
 
@@ -37,6 +38,11 @@ app.use(morgan('dev'));
 
 // Session Management
 app.use(session({
+  store: new FileStore({
+    path: './sessions',
+    ttl: 604800, // 7 days
+    retries: 0
+  }),
   name: 'sessionId',
   secret: process.env.SESSION_SECRET || 'tesla_secret_key_production_2024',
   resave: false,

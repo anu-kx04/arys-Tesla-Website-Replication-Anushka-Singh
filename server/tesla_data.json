@@ -14,6 +14,20 @@
       "password": "$2a$10$yGVbsFnWy.z0KumPgQ0r1OcuJ/yOeSOHi25rL/BSWIZ68FhKSfzxi",
       "id": 1763841463278,
       "createdAt": "2025-11-22T19:57:43.278Z"
+    },
+    {
+      "name": "shreya",
+      "email": "kpanushka23@gmail.com",
+      "password": "$2a$10$ihAgBAtfnMTCjd2k.tgH8OR.5Lr.xOm.asmFk1C7rQ6ItYX2y2aKS",
+      "id": 1763883012409,
+      "createdAt": "2025-11-23T07:30:12.409Z"
+    },
+    {
+      "name": "dad",
+      "email": "arbindks15@gmail.com",
+      "password": "$2a$10$V7jbPtFMLRYwJ7kuXF0ZoOb6x9xk74nJLr520zLEAvD8vMKn..ucO",
+      "id": 1763883152962,
+      "createdAt": "2025-11-23T07:32:32.962Z"
     }
   ],
   "orders": [
@@ -128,6 +142,118 @@
       "id": 1763879303942,
       "status": "Paid",
       "createdAt": "2025-11-23T06:28:23.942Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "white",
+        "wheels": "18",
+        "interior": "black",
+        "autopilot": "basic"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "white",
+          "name": "Pearl White Multi-Coat",
+          "hex": "#f4f6f8",
+          "price": 0
+        },
+        "wheels": {
+          "id": "18",
+          "name": "18\" Aero Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "basic",
+          "name": "Autopilot",
+          "features": [
+            "Traffic-Aware Cruise Control",
+            "Autosteer"
+          ],
+          "price": 0
+        }
+      },
+      "totalPrice": 38990,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763882943363,
+      "status": "Paid",
+      "createdAt": "2025-11-23T07:29:03.363Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "white",
+        "wheels": "19",
+        "interior": "black",
+        "autopilot": "fsd"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "white",
+          "name": "Pearl White Multi-Coat",
+          "hex": "#f4f6f8",
+          "price": 0
+        },
+        "wheels": {
+          "id": "19",
+          "name": "19\" Sport Wheels",
+          "price": 1500
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "fsd",
+          "name": "Full Self-Driving",
+          "features": [
+            "Traffic Light and Stop Sign Control",
+            "Autosteer on City Streets"
+          ],
+          "price": 12000
+        }
+      },
+      "totalPrice": 52490,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763883691528,
+      "status": "Paid",
+      "createdAt": "2025-11-23T07:41:31.528Z"
     }
   ],
   "analytics": [
