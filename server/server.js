@@ -36,11 +36,11 @@ app.use(express.urlencoded({ extended: true }));
 // Logging
 app.use(morgan('dev'));
 
-// Session Management
+// Session Management (2-minute timeout for testing, with refresh token support)
 app.use(session({
   store: new FileStore({
     path: './sessions',
-    ttl: 604800, // 7 days
+    ttl: 120, // 2 minutes (in seconds) - FOR TESTING
     retries: 0
   }),
   name: 'sessionId',
@@ -51,8 +51,9 @@ app.use(session({
     httpOnly: true,
     secure: false, // Set to true in production with HTTPS
     sameSite: 'lax',
-    maxAge: 1000 * 60 * 60 * 24 * 7 // 7 days (increased from 24 hours)
-  }
+    maxAge: 1000 * 60 * 2 // 2 minutes (120 seconds) - FOR TESTING
+  },
+  rolling: true // Reset session expiry on each request
 }));
 
 // ==========================================

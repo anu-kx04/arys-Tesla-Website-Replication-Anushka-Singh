@@ -45,9 +45,11 @@ router.post('/signup', async (req, res) => {
       password: hashedPassword
     });
 
-    // Store session
+    // Store session with timestamps for refresh token logic
     req.session.userId = newUser.id;
     req.session.userEmail = newUser.email;
+    req.session.createdAt = Date.now();
+    req.session.lastActivity = Date.now();
 
     // Remove password from response
     const { password: _, ...userWithoutPassword } = newUser;
@@ -111,9 +113,11 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    // Store session
+    // Store session with timestamps for refresh token logic
     req.session.userId = user.id;
     req.session.userEmail = user.email;
+    req.session.createdAt = Date.now();
+    req.session.lastActivity = Date.now();
 
     // Remove password from response
     const { password: _, ...userWithoutPassword } = user;
@@ -227,6 +231,51 @@ router.get('/profile', (req, res) => {
     res.status(500).json({
       success: false,
       message: 'Failed to fetch profile'
+    });
+  }
+});
+
+/**
+ * REFRESH SESSION
+ * POST /api/auth/refresh
+ * Extends the session if user is still active
+ */
+router.post('/refresh', (req, res) => {
+  try {
+    if (!req.session || !req.session.userId) {
+      return res.status(401).json({
+        success: false,
+        message: 'No active session to refresh'
+      });
+    }
+
+    // Verify user still exists
+    const user = db.findUserById(req.session.userId);
+    if (!user) {
+      req.session.destroy();
+      return res.status(401).json({
+        success: false,
+        message: 'User not found'
+      });
+    }
+
+    // Update last activity timestamp (rolling session will auto-extend)
+    req.session.lastActivity = Date.now();
+
+    // Session is automatically extended by the 'rolling: true' option
+    // We just need to touch the session to trigger the extension
+    req.session.touch();
+
+    res.json({
+      success: true,
+      message: 'Session refreshed successfully',
+      expiresIn: 120 // seconds (2 minutes for testing)
+    });
+  } catch (error) {
+    console.error('Session refresh error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to refresh session'
     });
   }
 });

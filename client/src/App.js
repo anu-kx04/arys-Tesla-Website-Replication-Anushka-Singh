@@ -451,15 +451,15 @@ const VEHICLES = {
     video: 'https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Cybertruck-Homepage-Desktop.mp4',
     image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Homepage-Cybertruck-Desktop',
     images: {
-      steel: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
-      black: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
-      white: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
+      black: { exterior: '/cybertruck-exterior.png', interior: '/Cybertruck-Interior-Desktop.jpg' },
+      pink: { exterior: '/cybertruck-pink.png', interior: '/Cybertruck-Interior-Desktop.jpg' },
+      yellow: { exterior: '/cybertruck-yellow.png', interior: '/Cybertruck-Interior-Desktop.jpg' }
     },
     wheels: {
       '20': {
-        steel: '/cybertruck-exterior.png',
         black: '/cybertruck-exterior.png',
-        white: '/cybertruck-exterior.png'
+        pink: '/cybertruck-pink.png',
+        yellow: '/cybertruck-yellow.png'
       }
     },
     specs: { range: '340+ mi', topSpeed: '112 mph', acceleration: '2.6s' },
@@ -469,9 +469,9 @@ const VEHICLES = {
         { id: 'beast', name: 'Cyberbeast', range: '320 mi', topSpeed: '130 mph', acceleration: '2.6s', price: 20000 }
       ],
       paint: [
-        { id: 'steel', name: 'Stainless Steel', hex: '#c0c0c0', price: 0 },
         { id: 'black', name: 'Satin Black Wrap', hex: '#1a1a1a', price: 6500 },
-        { id: 'white', name: 'Satin White Wrap', hex: '#f5f5f5', price: 6500 }
+        { id: 'pink', name: 'Satin Pink Wrap', hex: '#e91e8c', price: 6500 },
+        { id: 'yellow', name: 'Satin Yellow Wrap', hex: '#ffd700', price: 6500 }
       ],
       wheels: [
         { id: '20', name: '20" Cybertruck Wheels', price: 0 }
