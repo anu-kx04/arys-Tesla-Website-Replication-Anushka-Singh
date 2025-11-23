@@ -254,14 +254,70 @@
       "id": 1763883691528,
       "status": "Paid",
       "createdAt": "2025-11-23T07:41:31.528Z"
+    },
+    {
+      "vehicleId": "model3",
+      "vehicleName": "Model 3",
+      "config": {
+        "battery": "standard",
+        "paint": "white",
+        "wheels": "18",
+        "interior": "black",
+        "autopilot": "basic"
+      },
+      "selectedOptions": {
+        "battery": {
+          "id": "standard",
+          "name": "Standard Range",
+          "range": "272 mi",
+          "topSpeed": "125 mph",
+          "acceleration": "5.8s",
+          "price": 0
+        },
+        "paint": {
+          "id": "white",
+          "name": "Pearl White Multi-Coat",
+          "hex": "#f4f6f8",
+          "price": 0
+        },
+        "wheels": {
+          "id": "18",
+          "name": "18\" Aero Wheels",
+          "price": 0
+        },
+        "interior": {
+          "id": "black",
+          "name": "All Black",
+          "price": 0,
+          "hex": "#000"
+        },
+        "autopilot": {
+          "id": "basic",
+          "name": "Autopilot",
+          "features": [
+            "Traffic-Aware Cruise Control",
+            "Autosteer"
+          ],
+          "price": 0
+        }
+      },
+      "totalPrice": 38990,
+      "paymentDetails": {
+        "last4": "4242",
+        "brand": "Visa"
+      },
+      "userId": 1763827841503,
+      "id": 1763885122517,
+      "status": "Paid",
+      "createdAt": "2025-11-23T08:05:22.517Z"
     }
   ],
   "analytics": [
     {
       "filterType": "style",
       "filterValue": "Any",
-      "count": 1,
-      "lastUpdated": "2025-11-23T06:17:10.222Z"
+      "count": 2,
+      "lastUpdated": "2025-11-23T08:04:55.791Z"
     },
     {
       "filterType": "passengers",
@@ -274,6 +330,18 @@
       "filterValue": "Efficiency",
       "count": 1,
       "lastUpdated": "2025-11-23T06:17:10.231Z"
+    },
+    {
+      "filterType": "passengers",
+      "filterValue": "5",
+      "count": 1,
+      "lastUpdated": "2025-11-23T08:04:55.792Z"
+    },
+    {
+      "filterType": "priority",
+      "filterValue": "Balanced",
+      "count": 1,
+      "lastUpdated": "2025-11-23T08:04:55.793Z"
     }
   ],
   "recommendations": [
@@ -325,6 +393,55 @@
       ],
       "id": 1763878630233,
       "createdAt": "2025-11-23T06:17:10.233Z"
+    },
+    {
+      "userId": 1763827841503,
+      "preferences": {
+        "priceRange": {
+          "min": 30000,
+          "max": 100000
+        },
+        "dailyDistance": 30,
+        "passengers": 5,
+        "style": "Any",
+        "priority": "Balanced",
+        "towing": false,
+        "fsd": false
+      },
+      "recommendations": [
+        {
+          "vehicleId": "model3",
+          "vehicleName": "Model 3 Rear-Wheel Drive",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $38,990",
+            "Range (272mi) covers daily drive"
+          ],
+          "estimatedPrice": 38990
+        },
+        {
+          "vehicleId": "model3",
+          "vehicleName": "Model 3 Long Range AWD",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $46,990",
+            "Range (333mi) covers daily drive"
+          ],
+          "estimatedPrice": 46990
+        },
+        {
+          "vehicleId": "modelY",
+          "vehicleName": "Model Y Long Range",
+          "score": 75,
+          "reasons": [
+            "Fits budget: $48,990",
+            "Range (318mi) covers daily drive"
+          ],
+          "estimatedPrice": 48990
+        }
+      ],
+      "id": 1763885095794,
+      "createdAt": "2025-11-23T08:04:55.794Z"
     }
   ]
 }

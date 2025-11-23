@@ -619,107 +619,130 @@ const Navigation = ({ currentPage, onNavigate }) => {
           onClick={() => setMenuOpen(true)}
           className="lg:hidden bg-gradient-to-r from-purple-600 to-blue-600 text-white px-4 py-2 rounded-lg text-[13px] font-medium shadow-lg hover:shadow-xl transition-all duration-300"
         >
-          Menu
         </button>
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
-          <div className="absolute right-0 top-0 bottom-0 w-96 bg-white shadow-2xl border-l border-purple-100 flex flex-col">
-            <div className="flex justify-end p-6 pb-0">
-              <button onClick={() => setMenuOpen(false)} className="hover:bg-purple-50 p-2 rounded-full transition-all duration-300">
+        <div className="fixed inset-0 z-[9999] flex justify-end">
+          {/* Backdrop with fade in */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-md animate-fade-in"
+            onClick={() => setMenuOpen(false)}
+          />
+
+          {/* Menu Panel with slide in */}
+          <div className="relative w-full max-w-md h-full bg-white/95 backdrop-blur-2xl shadow-2xl animate-slide-in-right flex flex-col border-l border-white/20">
+
+            {/* Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-100">
+              <h2 className="text-xl font-bold text-gray-900 tracking-tight">Menu</h2>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors duration-200"
+              >
                 <X className="w-6 h-6 text-gray-600" />
               </button>
             </div>
-            <div className="flex-1 overflow-y-auto px-6 py-4">
-              <div className="flex flex-col gap-2">
-                {/* Main Navigation */}
-                <div className="border-b border-gray-200 pb-4 mb-2">
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Vehicles</p>
-                  {Object.values(VEHICLES).map(v => (
-                    <button
-                      key={v.id}
-                      onClick={() => { onNavigate('customize', v.id); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                    >
-                      {v.name}
-                    </button>
-                  ))}
+
+            {/* Scrollable Content */}
+            <div className="flex-1 overflow-y-auto px-6 py-6">
+              <div className="flex flex-col gap-8">
+
+                {/* Vehicles Section */}
+                <div className="space-y-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Vehicles</p>
+                  <div className="grid gap-2">
+                    {Object.values(VEHICLES).map(v => (
+                      <button
+                        key={v.id}
+                        onClick={() => { onNavigate('customize', v.id); setMenuOpen(false); }}
+                        className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                      >
+                        {v.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Services */}
-                <div className="border-b border-gray-200 pb-4 mb-2">
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Services</p>
-                  <button
-                    onClick={() => { onNavigate('advisor'); setMenuOpen(false); }}
-                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800 flex items-center gap-2"
-                  >
-                    ✨ Smart Choice Advisor
-                  </button>
-                  <button
-                    onClick={() => { onNavigate('servicing'); setMenuOpen(false); }}
-                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                  >
-                    Servicing & Maintenance
-                  </button>
-                  <button
-                    onClick={() => { onNavigate('charging'); setMenuOpen(false); }}
-                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                  >
-                    Charging Network
-                  </button>
-                  <button
-                    onClick={() => { onNavigate('customer-care'); setMenuOpen(false); }}
-                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                  >
-                    Customer Care
-                  </button>
+                {/* Services Section */}
+                <div className="space-y-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Services</p>
+                  <div className="grid gap-2">
+                    <button
+                      onClick={() => { onNavigate('advisor'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
+                    >
+                      <span className="text-xl">✨</span> Smart Choice Advisor
+                    </button>
+                    <button
+                      onClick={() => { onNavigate('servicing'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                    >
+                      Servicing & Maintenance
+                    </button>
+                    <button
+                      onClick={() => { onNavigate('charging'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                    >
+                      Charging Network
+                    </button>
+                    <button
+                      onClick={() => { onNavigate('customer-care'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                    >
+                      Customer Care
+                    </button>
+                  </div>
                 </div>
 
                 {/* Account Section */}
-                <div className="border-b border-gray-200 pb-4 mb-2">
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Account</p>
-                  {user ? (
-                    <>
+                <div className="space-y-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Account</p>
+                  <div className="grid gap-2">
+                    {user ? (
+                      <>
+                        <button
+                          onClick={() => { onNavigate('account'); setMenuOpen(false); }}
+                          className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
+                        >
+                          <User className="w-5 h-5 text-gray-500" />
+                          My Account
+                        </button>
+                        <button
+                          onClick={() => {
+                            logout();
+                            setMenuOpen(false);
+                            onNavigate('home');
+                          }}
+                          className="text-left py-3 px-4 hover:bg-red-50 rounded-xl font-medium text-red-600 transition-all duration-200 hover:translate-x-2 flex items-center gap-3"
+                        >
+                          <span className="text-xl">🚪</span> Logout
+                        </button>
+                      </>
+                    ) : (
                       <button
-                        onClick={() => { onNavigate('account'); setMenuOpen(false); }}
-                        className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm flex items-center gap-2 transition-all duration-300 hover:text-purple-600 text-gray-800"
+                        onClick={() => { onNavigate('login'); setMenuOpen(false); }}
+                        className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
                       >
-                        <User className="w-4 h-4" />
-                        My Account
+                        Login / Sign Up
                       </button>
-                      <button
-                        onClick={() => {
-                          logout();
-                          setMenuOpen(false);
-                          onNavigate('home');
-                        }}
-                        className="text-left py-3 px-4 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 rounded-lg font-medium text-sm transition-all duration-300 text-purple-600 hover:text-purple-700 font-semibold border-2 border-purple-200 hover:border-purple-400"
-                      >
-                        🚪 Logout
-                      </button>
-                    </>
-                  ) : (
-                    <button
-                      onClick={() => { onNavigate('login'); setMenuOpen(false); }}
-                      className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                    >
-                      Login / Sign Up
-                    </button>
-                  )}
+                    )}
+                  </div>
                 </div>
 
-                {/* Support */}
-                <div>
-                  <p className="text-xs font-bold text-gray-500 uppercase tracking-wider px-4 mb-3">Support</p>
-                  <button
-                    onClick={() => { onNavigate('contact'); setMenuOpen(false); }}
-                    className="text-left py-3 px-4 hover:bg-purple-50 rounded-lg font-medium text-sm transition-all duration-300 hover:text-purple-600 text-gray-800"
-                  >
-                    Contact Us
-                  </button>
+                {/* Support Section */}
+                <div className="space-y-4">
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Support</p>
+                  <div className="grid gap-2">
+                    <button
+                      onClick={() => { onNavigate('contact'); setMenuOpen(false); }}
+                      className="text-left py-3 px-4 hover:bg-gray-50 rounded-xl font-medium text-gray-800 transition-all duration-200 hover:translate-x-2"
+                    >
+                      Contact Us
+                    </button>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>
