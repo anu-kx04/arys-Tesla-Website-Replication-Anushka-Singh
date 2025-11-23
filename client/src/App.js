@@ -359,11 +359,11 @@ const VEHICLES = {
     video: 'https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Homepage-Model-S-Desktop.mp4',
     image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Model-S-homepage-desktop',
     images: {
-      white: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSW,$W41B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
-      black: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PBSB,$W41B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
-      blue: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSB,$W41B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
-      red: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPMR,$W41B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
-      gray: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PMNG,$W41B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' }
+      white: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSW,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
+      black: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PBSB,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
+      blue: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSB,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
+      red: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPMR,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
+      gray: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PMNG,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$IN3PW,$IPB0&view=STUD_SEAT&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' }
     },
     wheels: {
       '19': { white: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSW,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', black: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PBSB,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', blue: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPSB,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', red: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PPMR,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&', gray: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$MTS15,$PMNG,$W40B,$IN3PW&view=STUD_3QTR&model=ms&size=1920&bkba_opt=2&crop=0,0,0,0&' },
@@ -451,15 +451,15 @@ const VEHICLES = {
     video: 'https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Cybertruck-Homepage-Desktop.mp4',
     image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/h_1800,w_2880,c_fit,f_auto,q_auto:best/Homepage-Cybertruck-Desktop',
     images: {
-      steel: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
-      black: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
-      white: { exterior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
+      steel: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
+      black: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' },
+      white: { exterior: '/cybertruck-exterior.png', interior: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$INYPW,$CPF0&view=INTERIOR&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&' }
     },
     wheels: {
       '20': {
-        steel: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&',
-        black: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&',
-        white: 'https://static-assets.tesla.com/configurator/compositor?context=design_studio_2&options=$CFTC,$QFCP,$WT22,$INYPW&view=FRONT34&model=cc&size=1920&bkba_opt=1&crop=0,0,0,0&'
+        steel: '/cybertruck-exterior.png',
+        black: '/cybertruck-exterior.png',
+        white: '/cybertruck-exterior.png'
       }
     },
     specs: { range: '340+ mi', topSpeed: '112 mph', acceleration: '2.6s' },
@@ -569,6 +569,7 @@ const Navigation = ({ currentPage, onNavigate }) => {
 
         <div className="hidden lg:flex items-center justify-center flex-1 space-x-6 text-[13px] font-medium tracking-wide">
           <button onClick={() => onNavigate('vehicles')} className="hover:bg-white/5 px-3 py-2 rounded-lg transition-all duration-300 text-white">Find Your Dream Tesla</button>
+          <button onClick={() => onNavigate('advisor')} className="hover:bg-white/5 px-3 py-2 rounded-lg transition-all duration-300 text-white bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30">✨ Smart Choice</button>
           <button onClick={() => onNavigate('servicing')} className="hover:bg-white/5 px-3 py-2 rounded-lg transition-all duration-300 text-white">Servicing</button>
           <button onClick={() => onNavigate('charging')} className="hover:bg-white/5 px-3 py-2 rounded-lg transition-all duration-300 text-white">Charging</button>
           <button onClick={() => onNavigate('discover')} className="hover:bg-white/5 px-3 py-2 rounded-lg transition-all duration-300 text-white">Discover</button>
@@ -751,6 +752,537 @@ const Homepage = ({ onSelectVehicle }) => (
   </div>
 );
 
+// VEHICLES PAGE - "Find Your Dream Tesla"
+const VehiclesPage = ({ onSelect }) => (
+  <div className="min-h-screen pt-24 pb-12 bg-slate-900 relative overflow-hidden">
+    {/* Animated Background */}
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full bg-[url('https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-S-Desktop-LHD.png')] bg-cover bg-center opacity-5 blur-3xl scale-110 animate-pulse" style={{ animationDuration: '10s' }}></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-900"></div>
+    </div>
+
+    <div className="relative z-10 max-w-7xl mx-auto px-6">
+      <div className="text-center mb-16">
+        <h1 className="text-6xl font-bold mb-6 text-white tracking-tight">
+          Find Your Dream Tesla
+        </h1>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          Explore our lineup of electric vehicles designed for performance, safety, and sustainability.
+        </p>
+      </div>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Object.values(VEHICLES).map((vehicle, idx) => (
+          <div
+            key={vehicle.id}
+            className="group cursor-pointer backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-2xl hover:shadow-red-900/20 hover:border-red-500/30 transition-all duration-500 hover:-translate-y-2"
+            onClick={() => onSelect(vehicle.id)}
+            style={{ animationDelay: `${idx * 0.1}s` }}
+          >
+            <div className="aspect-[16/10] overflow-hidden bg-gradient-to-b from-white/5 to-transparent relative">
+              <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <img
+                src={vehicle.image}
+                alt={vehicle.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                onError={(e) => {
+                  e.target.src = vehicle.images[Object.keys(vehicle.images)[0]].exterior;
+                }}
+              />
+            </div>
+            <div className="p-8">
+              <h2 className="text-3xl font-bold mb-2 text-white group-hover:text-red-500 transition-colors">{vehicle.name}</h2>
+              <p className="text-gray-400 mb-6 h-12">{vehicle.tagline}</p>
+
+              <div className="grid grid-cols-3 gap-4 mb-8 text-sm border-t border-white/10 pt-6">
+                <div className="text-center">
+                  <div className="font-bold text-white text-lg">{vehicle.specs.range}</div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mt-1">Range</div>
+                </div>
+                <div className="text-center border-l border-r border-white/10 px-2">
+                  <div className="font-bold text-white text-lg">{vehicle.specs.topSpeed}</div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mt-1">Top Speed</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-bold text-white text-lg">{vehicle.specs.acceleration}</div>
+                  <div className="text-gray-500 text-xs uppercase tracking-wider mt-1">0-60 mph</div>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={(e) => { e.stopPropagation(); onSelect(vehicle.id); }}
+                  className="flex-1 bg-white text-black py-3 rounded-xl font-bold hover:bg-gray-200 transition-colors"
+                >
+                  Order
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); onSelect(`demo-drive-${vehicle.id}`); }}
+                  className="flex-1 bg-transparent text-white py-3 rounded-xl font-bold border border-white/30 hover:bg-white/10 transition-colors"
+                >
+                  Demo Drive
+                </button>
+              </div>
+
+              <div className="mt-6 text-center">
+                <span className="text-lg font-medium text-gray-400">
+                  Starting at <span className="text-white">${vehicle.basePrice.toLocaleString()}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+
+// ==========================================
+// FLOATING TESLA ASSISTANT
+// ==========================================
+const TeslaAssistant = ({ step, preferences, loading }) => {
+  const [message, setMessage] = useState("Hi! I'm your Tesla Guide. Let's find your dream car! 👋");
+  const [isVisible, setIsVisible] = useState(true);
+  const [isBouncing, setIsBouncing] = useState(false);
+
+  // React to changes
+  useEffect(() => {
+    setIsBouncing(true);
+    const timer = setTimeout(() => setIsBouncing(false), 1000);
+
+    if (loading) {
+      setMessage("Crunching the numbers... 🧠");
+    } else if (step === 2) {
+      setMessage("Ta-da! 🎉 Here are my top picks for you. What do you think?");
+    } else {
+      // Context-aware messages based on preferences
+      if (preferences.priceRange.max > 100000) {
+        setMessage("Wow, big budget! We can look at the Plaid models! 🚀");
+      } else if (preferences.dailyDistance > 100) {
+        setMessage("Long commute? I'll prioritize Long Range models for you. 🔋");
+      } else if (preferences.passengers > 5) {
+        setMessage("Big family? The Model X or Y would be perfect! 👨‍👩‍👧‍👦");
+      } else if (preferences.style === 'Pickup') {
+        setMessage("Cybertruck fan? Excellent choice! It's built for anything. 📐");
+      } else if (preferences.cityHighwayRatio > 80) {
+        setMessage("City driving? The Model 3 is super agile for that! 🏙️");
+      } else {
+        setMessage("Adjust the filters and I'll update my recommendations! 🎛️");
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [preferences, step, loading]);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed bottom-8 right-8 z-50 flex flex-col items-end pointer-events-none">
+      {/* Chat Bubble */}
+      <div className={`mb-4 mr-4 bg-white text-gray-800 p-4 rounded-2xl rounded-br-none shadow-2xl max-w-xs transform transition-all duration-500 ${isBouncing ? 'scale-105' : 'scale-100'} animate-fadeIn`}>
+        <p className="font-medium text-sm">{message}</p>
+      </div>
+
+      {/* Cute Car SVG Character */}
+      <div
+        className="relative w-32 h-24 cursor-pointer pointer-events-auto hover:scale-110 transition-transform duration-300"
+        onClick={() => setIsBouncing(true)}
+      >
+        {/* Floating Animation Wrapper */}
+        <div className="animate-bounce-slow">
+          <svg viewBox="0 0 200 150" className="w-full h-full drop-shadow-2xl">
+            {/* Car Body */}
+            <path d="M20,90 Q20,50 60,40 L140,40 Q180,50 180,90 L180,110 Q180,130 160,130 L40,130 Q20,130 20,110 Z" fill="#fff" stroke="#e2e8f0" strokeWidth="2" />
+            {/* Windshield (Eyes area) */}
+            <path d="M40,90 Q40,50 60,50 L140,50 Q160,50 160,90 Z" fill="#334155" />
+            {/* Eyes */}
+            <circle cx="70" cy="75" r="8" fill="#db2777" className="animate-blink" />
+            <circle cx="130" cy="75" r="8" fill="#db2777" className="animate-blink" />
+            {/* Smile */}
+            <path d="M85,105 Q100,115 115,105" fill="none" stroke="#334155" strokeWidth="3" strokeLinecap="round" />
+            {/* Wheels */}
+            <circle cx="50" cy="130" r="15" fill="#1e293b" />
+            <circle cx="150" cy="130" r="15" fill="#1e293b" />
+            {/* Blush */}
+            <circle cx="55" cy="95" r="5" fill="#f472b6" opacity="0.6" />
+            <circle cx="145" cy="95" r="5" fill="#f472b6" opacity="0.6" />
+          </svg>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes bounce-slow {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 3s infinite ease-in-out;
+        }
+        @keyframes blink {
+          0%, 90%, 100% { transform: scaleY(1); }
+          95% { transform: scaleY(0.1); }
+        }
+        .animate-blink {
+          transform-origin: center;
+          animation: blink 4s infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+// ==========================================
+// ==========================================
+// TESLA MODEL FINDER (SMART CHOICE)
+// ==========================================
+const AdvisorPage = ({ onSelect }) => {
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [recommendations, setRecommendations] = useState(null);
+  const [showResultPopup, setShowResultPopup] = useState(false);
+
+  const [preferences, setPreferences] = useState({
+    priceRange: { min: 30000, max: 100000 },
+    dailyDistance: 30,
+    passengers: 5,
+    style: 'Any',
+    priority: 'Balanced', // Performance, Efficiency, Balanced
+    towing: false,
+    fsd: false // Full Self Driving Capability
+  });
+
+  const handleGetRecommendations = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:5001/api/recommend', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ preferences })
+      });
+
+      const data = await response.json();
+      if (data.success && data.recommendations.length > 0) {
+        setRecommendations(data.recommendations);
+        setShowResultPopup(true);
+      } else {
+        // Fallback if no recommendations found (Robustness)
+        console.warn('No recommendations found, using fallback');
+        setRecommendations([{
+          id: 'modelY',
+          name: 'Model Y',
+          basePrice: 43990,
+          range: '310 mi',
+          acceleration: '4.8s',
+          topSpeed: '135 mph',
+          image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-Y-Desktop-Global.png',
+          score: 95,
+          reasons: ['Best selling model', 'Great balance of range & price', 'Fits your needs perfectly']
+        }]);
+        setShowResultPopup(true);
+      }
+    } catch (error) {
+      console.error('Recommendation error:', error);
+      // Fallback on error
+      setRecommendations([{
+        id: 'model3',
+        name: 'Model 3',
+        basePrice: 38990,
+        range: '341 mi',
+        acceleration: '4.2s',
+        topSpeed: '125 mph',
+        image: 'https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Homepage-Model-3-Desktop-LHD.png',
+        score: 90,
+        reasons: ['Most affordable option', 'Excellent range', 'High efficiency']
+      }]);
+      setShowResultPopup(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-zinc-950 pt-24 pb-12 relative overflow-hidden font-sans">
+      {/* Floating Assistant */}
+      <TeslaAssistant step={step} preferences={preferences} loading={loading} />
+
+      {/* Animated Background - Pink/Purple Theme */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-black opacity-80"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-pink-600/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 mb-4 tracking-tighter">
+            Smart Choice
+          </h1>
+          <p className="text-xl text-gray-400 font-light">Let our system find your perfect Tesla.</p>
+        </div>
+
+        {/* Filters Card */}
+        <div className="backdrop-blur-2xl bg-zinc-900/50 border border-white/10 rounded-3xl p-10 shadow-2xl relative overflow-hidden">
+          {/* Glow Effect */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500"></div>
+
+          <div className="grid md:grid-cols-2 gap-12">
+            {/* Price Range */}
+            <div>
+              <label className="block text-white font-medium mb-6 flex items-center gap-3">
+                <span className="text-pink-500 text-xl">●</span>
+                <span className="text-lg tracking-wide">MAX BUDGET</span>
+              </label>
+              <div className="space-y-6">
+                <input
+                  type="range"
+                  min="30000"
+                  max="150000"
+                  step="5000"
+                  value={preferences.priceRange.max}
+                  onChange={(e) => setPreferences({
+                    ...preferences,
+                    priceRange: { ...preferences.priceRange, max: parseInt(e.target.value) }
+                  })}
+                  className="w-full h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer slider-pink"
+                />
+                <div className="flex justify-between text-white font-medium items-end">
+                  <span className="text-zinc-500">$30k</span>
+                  <span className="text-4xl font-bold text-white">${preferences.priceRange.max.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Daily Distance */}
+            <div>
+              <label className="block text-white font-medium mb-6 flex items-center gap-3">
+                <span className="text-pink-500 text-xl">●</span>
+                <span className="text-lg tracking-wide">DAILY COMMUTE</span>
+              </label>
+              <div className="space-y-6">
+                <input
+                  type="range"
+                  min="10"
+                  max="200"
+                  step="10"
+                  value={preferences.dailyDistance}
+                  onChange={(e) => setPreferences({ ...preferences, dailyDistance: parseInt(e.target.value) })}
+                  className="w-full h-1 bg-zinc-700 rounded-lg appearance-none cursor-pointer slider-pink"
+                />
+                <div className="text-right">
+                  <span className="text-4xl font-bold text-white">{preferences.dailyDistance}</span>
+                  <span className="text-zinc-500 ml-2">miles / day</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Passengers */}
+            <div>
+              <label className="block text-white font-medium mb-6 flex items-center gap-3">
+                <span className="text-pink-500 text-xl">●</span>
+                <span className="text-lg tracking-wide">PASSENGERS</span>
+              </label>
+              <div className="flex gap-4">
+                {[5, 6, 7].map(num => (
+                  <button
+                    key={num}
+                    onClick={() => setPreferences({ ...preferences, passengers: num })}
+                    className={`flex-1 py-4 rounded-xl font-bold text-lg transition-all duration-300 border ${preferences.passengers === num
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-transparent scale-105 shadow-lg shadow-purple-500/20'
+                      : 'bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-500 hover:text-white'
+                      }`}
+                  >
+                    {num}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Priority */}
+            <div>
+              <label className="block text-white font-medium mb-6 flex items-center gap-3">
+                <span className="text-pink-500 text-xl">●</span>
+                <span className="text-lg tracking-wide">PRIORITY</span>
+              </label>
+              <div className="grid grid-cols-3 gap-4">
+                {['Performance', 'Balanced', 'Efficiency'].map(p => (
+                  <button
+                    key={p}
+                    onClick={() => setPreferences({ ...preferences, priority: p })}
+                    className={`py-4 rounded-xl font-bold text-sm transition-all duration-300 border ${preferences.priority === p
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white border-transparent scale-105 shadow-lg shadow-purple-500/20'
+                      : 'bg-transparent text-zinc-400 border-zinc-700 hover:border-zinc-500 hover:text-white'
+                      }`}
+                  >
+                    {p}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Toggles: Towing & FSD */}
+            <div className="md:col-span-2 grid md:grid-cols-2 gap-6">
+              {/* Towing Toggle */}
+              <div className="flex items-center justify-between bg-zinc-800/50 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors cursor-pointer group"
+                onClick={() => setPreferences({ ...preferences, towing: !preferences.towing })}>
+                <div className="flex items-center gap-4">
+                  <span className="text-2xl group-hover:scale-110 transition-transform">🚛</span>
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Towing Capability</h3>
+                    <p className="text-zinc-500 text-sm">Need to tow a trailer or boat</p>
+                  </div>
+                </div>
+                <div className={`w-14 h-8 rounded-full transition-colors relative ${preferences.towing ? 'bg-pink-600' : 'bg-zinc-700'}`}>
+                  <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-transform shadow-md ${preferences.towing ? 'left-7' : 'left-1'}`} />
+                </div>
+              </div>
+
+              {/* FSD Toggle */}
+              <div className="flex items-center justify-between bg-zinc-800/50 p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors cursor-pointer group"
+                onClick={() => setPreferences({ ...preferences, fsd: !preferences.fsd })}>
+                <div className="flex items-center gap-4">
+                  <span className="text-2xl group-hover:scale-110 transition-transform">🧠</span>
+                  <div>
+                    <h3 className="text-white font-bold text-lg">Full Self-Driving</h3>
+                    <p className="text-zinc-500 text-sm">Prioritize FSD hardware</p>
+                  </div>
+                </div>
+                <div className={`w-14 h-8 rounded-full transition-colors relative ${preferences.fsd ? 'bg-pink-600' : 'bg-zinc-700'}`}>
+                  <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-transform shadow-md ${preferences.fsd ? 'left-7' : 'left-1'}`} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Get Recommendations Button */}
+          <button
+            onClick={handleGetRecommendations}
+            disabled={loading}
+            className="mt-12 w-full bg-white text-black py-6 rounded-xl font-bold text-xl hover:bg-gray-200 hover:scale-[1.01] transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3 shadow-[0_0_40px_rgba(255,255,255,0.1)]"
+          >
+            {loading ? (
+              <>
+                <div className="w-6 h-6 border-3 border-black border-t-transparent rounded-full animate-spin"></div>
+                <span>Analyzing Configuration...</span>
+              </>
+            ) : (
+              <span>Find My Tesla</span>
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* RESULT POPUP MODAL */}
+      {showResultPopup && recommendations && recommendations.length > 0 && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setShowResultPopup(false)}></div>
+
+          <div className="relative bg-zinc-900 border border-white/10 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl flex flex-col md:flex-row animate-scaleIn">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowResultPopup(false)}
+              className="absolute top-4 right-4 z-10 bg-black/50 text-white p-2 rounded-full hover:bg-black/80 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Image Section */}
+            <div className="md:w-1/2 bg-gradient-to-br from-zinc-800 to-black relative flex items-center justify-center p-8">
+              <div className="absolute top-6 left-6 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase shadow-lg">
+                Best Match
+              </div>
+              <img
+                src={recommendations[0].image}
+                alt={recommendations[0].name}
+                className="w-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
+            {/* Content Section */}
+            <div className="md:w-1/2 p-8 md:p-10 flex flex-col justify-center bg-zinc-900/95 backdrop-blur-xl">
+              <h2 className="text-sm font-bold text-pink-500 tracking-widest uppercase mb-2">HERE'S THE BEST CAR FOR YOU</h2>
+              <h3 className="text-4xl font-bold text-white mb-4">{recommendations[0].name}</h3>
+
+              <div className="text-3xl font-bold text-white mb-8">
+                ${recommendations[0].basePrice.toLocaleString()}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                  <div className="text-zinc-400 text-xs uppercase tracking-wider mb-1">Range</div>
+                  <div className="text-white font-bold text-lg">{recommendations[0].range}</div>
+                </div>
+                <div className="bg-white/5 p-4 rounded-xl border border-white/5">
+                  <div className="text-zinc-400 text-xs uppercase tracking-wider mb-1">0-60 mph</div>
+                  <div className="text-white font-bold text-lg">{recommendations[0].acceleration}</div>
+                </div>
+              </div>
+
+              <div className="space-y-3 mb-8">
+                {recommendations[0].reasons.map((reason, i) => (
+                  <div key={i} className="flex items-center gap-3 text-zinc-300">
+                    <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 text-xs">✓</div>
+                    <span>{reason}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => {
+                  setShowResultPopup(false);
+                  onSelect(recommendations[0].id);
+                }}
+                className="w-full bg-white text-black py-4 rounded-xl font-bold text-lg hover:bg-gray-200 hover:scale-[1.02] transition-all shadow-lg shadow-white/10 flex items-center justify-center gap-2"
+              >
+                <span>Order Now</span>
+                <span className="text-xl">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+          from { transform: scale(0.9); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+        .animate-scaleIn {
+          animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .slider-pink::-webkit-slider-thumb {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #db2777; /* Pink-600 */
+          cursor: pointer;
+          border: 2px solid white;
+          box-shadow: 0 0 10px rgba(219, 39, 119, 0.5);
+        }
+        .slider-pink::-moz-range-thumb {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #db2777;
+          cursor: pointer;
+          border: 2px solid white;
+          box-shadow: 0 0 10px rgba(219, 39, 119, 0.5);
+        }
+      `}</style>
+    </div>
+  );
+};
+
 // ENHANCED CONFIGURATOR WITH EXTERIOR/INTERIOR TOGGLE
 const Configurator = ({ vehicleId, onBack, onNavigate }) => {
   const vehicle = VEHICLES[vehicleId];
@@ -909,7 +1441,7 @@ const Configurator = ({ vehicleId, onBack, onNavigate }) => {
           <img
             src={currentImage}
             alt="Configuration Preview"
-            className={`w-full h-full object-contain p-8 transition-all duration-700 ${viewMode === 'exterior' ? 'hover:scale-105 drop-shadow-2xl' : 'scale-110'}`}
+            className={`w-full h-full object-contain p-8 transition-all duration-700 ${viewMode === 'exterior' ? (vehicleId === 'cybertruck' ? 'hover:rotate-12 hover:scale-110 drop-shadow-2xl' : 'hover:scale-105 drop-shadow-2xl') : 'scale-110'}`}
             key={currentImage}
             onError={(e) => {
               console.warn('Image failed to load, falling back to hero:', currentImage);
@@ -1585,52 +2117,7 @@ const AnimatedStat = ({ value, label, prefix = '', suffix = '' }) => {
   );
 };
 
-const VehiclesPage = ({ onSelect }) => (
-  <div className="min-h-screen bg-[#020617] pt-24 pb-12 px-6">
-    <div className="max-w-7xl mx-auto">
-      <h1 className="text-5xl font-bold text-white mb-4 text-center">Our Vehicles</h1>
-      <p className="text-gray-400 text-center mb-16 max-w-2xl mx-auto">
-        Designed for performance, safety and sustainability. Experience the future of driving.
-      </p>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {Object.values(VEHICLES).map((v, idx) => (
-          <div
-            key={v.id}
-            className="group relative overflow-hidden rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:shadow-[0_0_40px_rgba(168,85,247,0.2)]"
-          >
-            <div className="aspect-[4/3] overflow-hidden">
-              <img
-                src={VEHICLE_HD_IMAGES[v.id]?.card || v.image}
-                alt={v.name}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent p-8 flex flex-col justify-end">
-              <h3 className="text-3xl font-bold text-white mb-2">{v.name}</h3>
-              <div className="flex gap-4 text-sm text-gray-300 mb-6">
-                <span>{v.specs.range} Range</span>
-                <span>•</span>
-                <span>{v.specs.acceleration} 0-60</span>
-              </div>
-              <div className="flex gap-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                <button
-                  onClick={() => onSelect(v.id)}
-                  className="flex-1 bg-white text-black py-3 rounded-full font-semibold hover:bg-gray-200 transition-colors"
-                >
-                  Order Now
-                </button>
-                <button className="flex-1 bg-white/10 backdrop-blur-md text-white py-3 rounded-full font-semibold hover:bg-white/20 transition-colors">
-                  Learn More
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
 
 const ChargingPage = () => (
   <div className="min-h-screen bg-[#020617]">
@@ -2318,27 +2805,27 @@ const ContactPage = () => {
         }
       `}</style>
       <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-8 py-8">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-6xl font-bold mb-6 text-white">
+          <div className="text-center mb-20">
+            <h1 className="text-6xl font-bold mb-8 text-white">
               Contact Us
             </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
               We're here to help! Reach out to us with any questions or concerns.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="backdrop-blur-xl bg-white/15 border border-white/30 shadow-[0_0_30px_rgba(148,163,255,0.3)] rounded-3xl p-10">
-              <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-white">
+            <div className="backdrop-blur-xl bg-white/15 border border-white/30 shadow-[0_0_30px_rgba(148,163,255,0.3)] rounded-3xl p-12">
+              <h2 className="text-3xl font-bold mb-10 flex items-center gap-3 text-white">
                 <User className="w-8 h-8 text-purple-400" />
                 Send a Message
               </h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label className="block text-base font-semibold text-gray-200 mb-2">Full Name</label>
+                  <label className="block text-base font-semibold text-white mb-3">Full Name</label>
                   <input
                     type="text"
                     required
@@ -2349,7 +2836,7 @@ const ContactPage = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-base font-semibold text-gray-200 mb-2">Email Address</label>
+                  <label className="block text-base font-semibold text-white mb-3">Email Address</label>
                   <input
                     type="email"
                     required
@@ -2361,7 +2848,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-base font-semibold text-gray-200 mb-2">Phone Number</label>
+                  <label className="block text-base font-semibold text-white mb-3">Phone Number</label>
                   <input
                     type="tel"
                     value={formData.phone}
@@ -2372,7 +2859,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-base font-semibold text-gray-200 mb-2">Interested Model</label>
+                  <label className="block text-base font-semibold text-white mb-3">Interested Model</label>
                   <select
                     value={formData.model}
                     onChange={(e) => setFormData({ ...formData, model: e.target.value })}
@@ -2388,7 +2875,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-base font-semibold text-gray-200 mb-2">Message</label>
+                  <label className="block text-base font-semibold text-white mb-3">Message</label>
                   <textarea
                     required
                     value={formData.message}
@@ -2410,20 +2897,20 @@ const ContactPage = () => {
             </div>
 
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               {/* Support Details */}
-              <div className="backdrop-blur-xl bg-white/15 border border-white/30 shadow-[0_0_30px_rgba(148,163,255,0.3)] rounded-3xl p-10">
-                <h3 className="text-3xl font-bold mb-6 flex items-center gap-3 text-white">
+              <div className="backdrop-blur-xl bg-white/15 border border-white/30 shadow-[0_0_30px_rgba(148,163,255,0.3)] rounded-3xl p-12">
+                <h3 className="text-3xl font-bold mb-8 flex items-center gap-3 text-white">
                   <Globe className="w-8 h-8 text-purple-400" />
                   Get in Touch
                 </h3>
-                <div className="space-y-6 text-lg text-white">
+                <div className="space-y-8 text-lg text-white">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white text-xl">📞</span>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Customer Support Hotline</p>
+                      <p className="font-bold text-white">Customer Support Hotline</p>
                       <a href="tel:+919876543210" className="text-purple-600 font-bold text-2xl hover:underline">
                         +91-9876543210
                       </a>
@@ -2435,7 +2922,7 @@ const ContactPage = () => {
                       <span className="text-white text-xl">✉️</span>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Email Support</p>
+                      <p className="font-bold text-white">Email Support</p>
                       <a href="mailto:ssanushka23@gmail.com" className="text-blue-600 font-bold text-xl hover:underline">
                         ssanushka23@gmail.com
                       </a>
@@ -2447,8 +2934,8 @@ const ContactPage = () => {
                       <span className="text-white text-xl">📍</span>
                     </div>
                     <div>
-                      <p className="font-bold text-gray-800">Visit Us</p>
-                      <p className="text-gray-600">
+                      <p className="font-bold text-white">Visit Us</p>
+                      <p className="text-gray-200">
                         PES University – Electronic City Campus<br />
                         Hosur Road, Near NICE Road,<br />
                         Bengaluru, Karnataka 560100<br />
@@ -2459,7 +2946,7 @@ const ContactPage = () => {
                   <span className="text-white text-xl">📧</span>
                 </div>
                 <div>
-                  <p className="font-bold text-gray-800">Support Email</p>
+                  <p className="font-bold text-white">Support Email</p>
                   <a href="mailto:ssanushka23@gmail.com" className="text-blue-600 font-bold text-xl hover:underline">
                     ssanushka23@gmail.com
                   </a>
@@ -2484,8 +2971,8 @@ const ContactPage = () => {
           </div>
 
           {/* Office Hours */}
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-10 border border-green-200 shadow-lg">
-            <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+          <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-lg mt-10">
+            <h3 className="text-3xl font-bold mb-6 flex items-center gap-3 text-gray-800">
               <Clock className="w-8 h-8 text-green-600" />
               Office Hours
             </h3>
@@ -2502,8 +2989,8 @@ const ContactPage = () => {
           </div>
 
           {/* Quick Links */}
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-3xl p-10 border border-blue-200 shadow-lg">
-            <h3 className="text-3xl font-bold mb-6">Quick Actions</h3>
+          <div className="bg-white rounded-3xl p-10 border border-gray-200 shadow-lg mt-10">
+            <h3 className="text-3xl font-bold mb-6 text-gray-800">Quick Actions</h3>
             <div className="space-y-3">
               <button className="w-full bg-white border-2 border-blue-200 text-blue-700 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 hover:border-blue-400 transition-all duration-300">
                 Schedule Test Drive
@@ -2733,6 +3220,7 @@ const DemoDrivePage = ({ vehicleId, onBack }) => {
           <div className="bg-white rounded-3xl p-10 max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-start justify-between mb-6">
               <h2 className="text-4xl font-bold text-slate-900">{vehicle.name}</h2>
+
               <button onClick={() => setShowKnowMore(false)} className="text-gray-600 hover:text-black transition-colors">
                 <X className="w-8 h-8" />
               </button>
@@ -3038,6 +3526,7 @@ const TeslaApp = () => {
       <div className="transition-opacity duration-500 ease-in-out">
         {page === 'home' && <Homepage onSelectVehicle={handleSelect} />}
         {page === 'vehicles' && <VehiclesPage onSelect={handleSelect} />}
+        {page === 'advisor' && <AdvisorPage onSelect={handleSelect} />}
         {page === 'servicing' && <ServicingPage />}
         {page === 'contact' && <ContactPage />}
         {page === 'customer-care' && <CustomerCarePage />}

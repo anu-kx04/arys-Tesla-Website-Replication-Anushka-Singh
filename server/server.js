@@ -8,6 +8,7 @@ const morgan = require('morgan');
 // Import Routes - JSON DATABASE ONLY
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const recommendRoutes = require('./routes/recommendRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -65,6 +66,7 @@ app.get('/health', (req, res) => {
 // API Routes - WORKING WITH JSON DATABASE
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api', recommendRoutes);
 
 // Support Info
 app.get('/api/support-info', (req, res) => {

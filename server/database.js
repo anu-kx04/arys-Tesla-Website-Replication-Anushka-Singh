@@ -75,5 +75,55 @@ module.exports = {
         data.orders.push(newOrder);
         writeDb(data);
         return newOrder;
+    },
+
+    // Recommendation Methods
+    saveRecommendation: (recommendationData) => {
+        const data = readDb();
+        if (!data.recommendations) data.recommendations = [];
+
+        const newRecommendation = {
+            ...recommendationData,
+            id: Date.now(),
+            createdAt: new Date().toISOString()
+        };
+        data.recommendations.push(newRecommendation);
+        writeDb(data);
+        return newRecommendation;
+    },
+
+    findRecommendationsByUserId: (userId) => {
+        const data = readDb();
+        if (!data.recommendations) return [];
+        return data.recommendations
+            .filter(r => r.userId === userId)
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    },
+
+    // Analytics Methods
+    trackAnalytics: (filterType, filterValue) => {
+        const data = readDb();
+        if (!data.analytics) data.analytics = [];
+
+        const existing = data.analytics.find(a => a.filterType === filterType && a.filterValue === filterValue);
+
+        if (existing) {
+            existing.count += 1;
+            existing.lastUpdated = new Date().toISOString();
+        } else {
+            data.analytics.push({
+                filterType,
+                filterValue,
+                count: 1,
+                lastUpdated: new Date().toISOString()
+            });
+        }
+        writeDb(data);
+    },
+
+    getAnalytics: () => {
+        const data = readDb();
+        if (!data.analytics) return [];
+        return data.analytics.sort((a, b) => b.count - a.count);
     }
 };
